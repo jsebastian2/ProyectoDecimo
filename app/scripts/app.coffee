@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('proyectoApp', [
+angular.module('WissenSystem', [
   'ngAnimate'
   'ngCookies'
   'ngResource'
@@ -49,22 +49,30 @@ angular.module('proyectoApp', [
   }
 )())
 
-.config( ['$routeProvider', 'RestangularProvider', 'App', ($routeProvider, Restangular, App)->
 
-  Restangular.setBaseUrl App.Server
+.constant('AUTH_EVENTS', {
+  loginSuccess: 'auth-login-success',
+  loginFailed: 'auth-login-failed',
+  logoutSuccess: 'auth-logout-success',
+  sessionTimeout: 'auth-session-timeout',
+  notAuthenticated: 'auth-not-authenticated',
+  notAuthorized: 'auth-not-authorized'
+})
+.constant('USER_ROLES', {
+  all:            '*',
+  admin:          'admin',
+  participante:   'participante',
+  tecnico:        'tecnico'
+  profesor:       'profesor'
+  guest:          'guest'
+})
+.constant('PERMISSIONS', {
+  can_work_like_admin:            'can_work_like_admin'
+  can_work_like_teacher:          'can_work_like_teacher'
+  can_work_like_participante:     'can_work_like_participante'
+  can_work_like_tecnico:          'can_work_like_tecnico'
+  can_accept_images:              'can_accept_images'
+  can_edit_participantes:         'can_edit_participantes'
+  can_edit_usuarios:              'can_edit_usuarios'
+})
 
-
-
-  $routeProvider
-    .when('/', {
-      templateUrl: 'views/main.html',
-      controller: 'MainCtrl'
-    })
-    .when('/about', {
-      templateUrl: 'views/about.html',
-      controller: 'AboutCtrl'
-    })
-    .otherwise({
-      redirectTo: '/'
-    })
-])

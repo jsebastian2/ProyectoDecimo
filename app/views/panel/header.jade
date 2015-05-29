@@ -1,0 +1,45 @@
+ul.list-unstyled.left-elems
+	// nav trigger/collapse
+	li
+		a.nav-trigger.ion.ion-drag(href="" ng-click="toggleNav()")
+
+	//  Search box 
+	li
+		.form-search.hidden-xs
+			form#site-search(action="na")
+				input.form-control(type="search" placeholder="Type here for search...")
+				button.ion.ion-ios-search-strong(type="submit")
+
+
+	// site-logo for mobile nav
+	li
+		.site-logo.visible-xs
+			a.text-uppercase.h3(href="#/dashboard")
+				span.text Materia
+
+	// fullscreen
+	li.fullscreen.hidden-xs(ng-click="goFullScreen()")
+		a(href="")
+			i.ion.ion-qr-scanner
+
+	// notification drop
+	li.notify-drop.hidden-xs.dropdown(dropdown="")
+		a(href="" dropdown-toggle="")
+			i.ion.ion-speakerphone
+			span.badge.badge-danger.badge-xs.circle 3
+		
+		.panel.panel-default.dropdown-menu(custom-scrollbar="")
+			.panel-heading You have 3 new notifications 
+				a.right.btn.btn-xs.btn-pink.mt-3(href="javascript:;") Show All
+			.panel-body
+				ul.list-unstyled
+					li.clearfix
+						a(href="")
+							span.ion.ion-archive.left.bg-success
+							.desc
+								strong App downloaded
+								p.small.text-muted 1 min ago
+
+
+
+

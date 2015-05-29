@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" ng-app="WissenSystem">
   <head>
     <meta charset="utf-8">
     <title></title>
@@ -12,34 +12,27 @@
     <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
     <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="proyectoApp">
+  <body>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#/about">About</a></li>
-          <li><a ng-href="#">Contact</a></li>
-        </ul>
-        <h3 class="text-muted">proyecto</h3>
-      </div>
+    <div ng-controller="ApplicationController">
+        
+        <div ui-view="principal"></div>
+       
 
-      <div ng-view=""></div>
-
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
     </div>
+    
+
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -84,14 +77,30 @@
     <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
     <script src="bower_components/angular-translate/angular-translate.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/aboutCtrl.js"></script>
-        <script src="scripts/preguntas/PreguntasCtrl.js"></script>
+        <script src="scripts/main/main.js"></script>
+        <script src="scripts/main/ApplicationController.js"></script>
+        <script src="scripts/main/WSConfiguracion.js"></script>
+        <script src="scripts/main/WSRun.js"></script>
+        <script src="scripts/login/loginConfig.js"></script>
+        <script src="scripts/login/loginCtrl.js"></script>
+        <script src="scripts/panel/PanelConfig.js"></script>
+        <script src="scripts/panel/PanelCtrl.js"></script>
+        <script src="scripts/eventos/EventosConfig.js"></script>
+        <script src="scripts/eventos/EventosCtrl.js"></script>
+        <script src="scripts/eventos/EventosUserCtrl.js"></script>
+        <script src="scripts/entidades/EntidadesConfig.js"></script>
+        <script src="scripts/entidades/EntidadesCtrl.js"></script>
+
+
+        <script src="scripts/Services/AuthService.js"></script>
+        <script src="scripts/Services/Perfil.js"></script>
         <!-- endbuild -->
 </body>
 </html>

@@ -1,0 +1,45 @@
+.nav-head
+	// site logo
+	a.site-logo.text-uppercase(href="materiales/Materia.html")
+		i.ionion-disc
+		span.text Materia
+
+// Site nav (vertical) 
+nav.site-nav.clearfix(role="navigation")
+	.profile.clearfix.mb15
+		img(src="images/perfil/pruebaadmin.jpg" alt="admin")
+		div.group
+			h5.name Robert Smith
+			small.desig.text-uppercase UX Designer
+
+	// navigation
+	ul.list-unstyled.clearfix.nav-list.mb15(highlight-active="")
+		li.active
+			a(href="materiales/Materia.html" md-ink-ripple="")
+				i.ion.ion-monitor
+				span.text Dashboard
+
+		li
+			a(href="javascript:;" md-ink-ripple="")
+				i.ion.ion-asterisk
+				span.text Icons
+				i.arrow.ion-chevron-left
+				span.badge.badge-xs.badge-primary 2
+			a
+			ul.inner-drop.nested.list-unstyled
+				li 
+					a(href="http://solutionportal.net/projects/materia/angular/#/icons/font-awesome" md-ink-ripple="") Font Awesome
+				li 
+					a(href="http://solutionportal.net/projects/materia/angular/#/icons/ionicons" md-ink-ripple="") Ionicons
+
+		li
+			a(href="http://solutionportal.net/projects/materia/angular/#/tables/tables" md-ink-ripple="")
+				i.ion.ion-clipboard
+				span.text Tables
+		
+
+
+<!-- nav-foot -->
+footer.nav-foot
+	p 2015 © 
+		span MATERIA
