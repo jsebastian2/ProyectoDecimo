@@ -32,3 +32,76 @@
     </div>
   </li>
 </ul>
+<ul class="list-unstyled right-elems ng-scope">
+  <li dropdown="" class="profile-drop hidden-xs dropdown"><a href="" dropdown-toggle="" aria-haspopup="true" aria-expanded="false"><img src="images/perfil/pruebaadmin.jpg" alt="admin-pic"></a>
+    <ul class="dropdown-menu dropdown-menu-right">
+      <li><a href="javascript:;"><span class="ion ion-person"></span>Profile</a></li>
+      <li><a href="javascript:;"><span class="ion ion-settings"> </span>Settings</a></li>
+      <li class="divider"></li>
+      <li><a href="javascript:;"><span class="ion ion-lock-combination"></span>Lock Screen</a></li>
+      <li><a href="javascript:;"><span class="ion ion-power"></span>Logout</a></li>
+    </ul>
+  </li>
+  <!--li.floating-sidebar(ng-class="{'open': floatingSidebar}")-->
+  <li class="floating-sidebar open"><a href="" ng-click="toggleFloatingSidebar()" tabindex="0"><i class="ion ion-grid"></i></a>
+    <div custom-scrollbar="" class="sidebar-wrap ps-container ps-active-y">
+      <tabset justified="true">
+        <tab heading="CHAT">
+          <div class="chat-tab clearfix">
+            <h5 class="title mt0 mb30">Online</h5>
+            <div class="user-container mb15"><img src="images/perfil/pruebaadmin.jpg" alt="">
+              <div class="desc">
+                <p class="mb0">John Wick</p>
+                <p class="xsmall"><span class="ion ion-location"></span>San Franciso, USA</p>
+              </div><span class="ion ion-record avail right on"></span>
+            </div>
+            <div class="user-container mb15"><img src="images/perfil/pruebaadmin.jpg" alt="">
+              <div class="desc">
+                <p class="mb0">John Wick</p>
+                <p class="xsmall"><span class="ion ion-location"></span>California, USA</p>
+              </div><span class="ion ion-record avail right away"></span>
+            </div>
+          </div>
+        </tab>
+        <tab heading="INFO">
+          <div class="info-tab clearfix">
+            <h5 class="title mt0 mb30">Work in Progress</h5>
+            <ul class="list-unstyled mb15 clearfix">
+              <li>
+                <div class="clearfix mb10"><small class="left">App Upload</small><small class="right">80%</small></div>
+                <div value="80" type="primary" class="progress-xs progress ng-isolate-scope">
+                  <div ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="80%" ng-transclude="" style="width: 80%;" class="progress-bar progress-bar-primary"></div>
+                </div>
+              </li>
+            </ul>
+            <h5 class="title mt0 mb30">Settings</h5>
+            <div class="clearfix mb15">
+              <div class="left">
+                <p>Show me online</p>
+              </div>
+              <div class="right">
+                <div class="ui-toggle ui-toggle-success ui-toggle-xs">
+                  <label>
+                    <input type="checkbox" checked=""><span></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix mb15">
+              <div class="left">
+                <p>Notifications</p>
+              </div>
+              <div class="right">
+                <div class="ui-toggle ui-toggle-success ui-toggle-xs">
+                  <label>
+                    <input type="checkbox"><span></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </li>
+</ul>

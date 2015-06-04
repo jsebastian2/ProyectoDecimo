@@ -41,5 +41,88 @@ ul.list-unstyled.left-elems
 								p.small.text-muted 1 min ago
 
 
+ul.list-unstyled.right-elems.ng-scope
+	li.profile-drop.hidden-xs.dropdown(dropdown='')
+		a(href='', dropdown-toggle='', aria-haspopup='true', aria-expanded='false')
+			img(src='images/perfil/pruebaadmin.jpg', alt='admin-pic')
+		ul.dropdown-menu.dropdown-menu-right
+			li
+				a(href='javascript:;')
+					span.ion.ion-person
+					| Profile
+			li
+				a(href='javascript:;')
+					span.ion.ion-settings 
+					| Settings
+			li.divider
+			li
+				a(href='javascript:;')
+					span.ion.ion-lock-combination
+					| Lock Screen
+			li
+				a(href='javascript:;')
+					span.ion.ion-power
+					| Logout
+
+
+
+	//li.floating-sidebar(ng-class="{'open': floatingSidebar}")
+	li.floating-sidebar(class="open")
+		a(href='' ng-click='toggleFloatingSidebar()', tabindex='0')
+			i.ion.ion-grid
+		.sidebar-wrap.ps-container.ps-active-y(custom-scrollbar='')
+			
+			tabset(justified="true")
+				tab(heading="CHAT")
+					.chat-tab.clearfix
+						h5.title.mt0.mb30 Online
+						.user-container.mb15
+							img(src='images/perfil/pruebaadmin.jpg', alt='')
+							.desc
+								p.mb0 John Wick
+								p.xsmall
+									span.ion.ion-location
+									| San Franciso, USA
+							span.ion.ion-record.avail.right.on
+						.user-container.mb15
+							img(src='images/perfil/pruebaadmin.jpg', alt='')
+							.desc
+								p.mb0 John Wick
+								p.xsmall
+									span.ion.ion-location
+									| California, USA
+							span.ion.ion-record.avail.right.away
+
+				tab(heading="INFO")
+					.info-tab.clearfix
+						h5.title.mt0.mb30 Work in Progress
+						ul.list-unstyled.mb15.clearfix
+							li
+								.clearfix.mb10
+									small.left App Upload
+									small.right 80%
+								.progress-xs.progress.ng-isolate-scope(value='80', type='primary')
+									.progress-bar.progress-bar-primary(ng-class="type && 'progress-bar-' + type", role='progressbar', aria-valuenow='80', aria-valuemin='0', aria-valuemax='100', ng-style="{width: percent + '%'}", aria-valuetext='80%', ng-transclude='', style='width: 80%;')
+
+						h5.title.mt0.mb30 Settings
+
+						.clearfix.mb15
+							.left
+								p Show me online
+							.right
+								.ui-toggle.ui-toggle-success.ui-toggle-xs
+									label
+										input(type='checkbox', checked='')
+										span
+
+						.clearfix.mb15
+							.left
+								p Notifications
+
+							.right
+								.ui-toggle.ui-toggle-success.ui-toggle-xs
+									label
+										input(type='checkbox')
+										span
 
 
