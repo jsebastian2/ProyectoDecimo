@@ -11,16 +11,16 @@
   </div>
   <!-- navigation-->
   <ul highlight-active="" class="list-unstyled clearfix nav-list mb15">
-    <li class="active"><a href="materiales/Materia.html" md-ink-ripple=""><i class="ion ion-monitor"></i><span class="text">Dashboard</span></a></li>
-    <li><a href="javascript:;" md-ink-ripple=""><i class="ion ion-asterisk"></i><span class="text">Icons</span><i class="arrow ion-chevron-left"></i><span class="badge badge-xs badge-primary">2</span></a>
+    <li ng-class="{active: $state.is('panel') }"><a href="" ui-sref="panel" md-ink-ripple=""><i class="ion ion-monitor"></i><span class="text">Inicio</span></a></li>
+    <li ui-sref-active="active"><a href="" ui-sref="panel.preguntas"><i class="ion ion-clipboard"></i><span class="text">Preguntas</span></a></li>
+    <li ui-sref-active="active"><a href="" md-ink-ripple=""><i class="ion ion-asterisk"></i><span class="text">Construcción</span><i class="arrow ion-chevron-left"></i><span class="badge badge-xs badge-primary">2</span></a>
       <ul class="inner-drop nested list-unstyled">
-        <li> <a href="http://solutionportal.net/projects/materia/angular/#/icons/font-awesome" md-ink-ripple="">Font Awesome</a></li>
-        <li> <a href="http://solutionportal.net/projects/materia/angular/#/icons/ionicons" md-ink-ripple="">Ionicons</a></li>
+        <li> <a href="" md-ink-ripple="">Font Awesome</a></li>
+        <li> <a href="" md-ink-ripple="">Ionicons</a></li>
       </ul>
     </li>
-    <li><a href="" ui-sref="preguntas" md-ink-ripple=""><i class="ion ion-clipboard"></i><span class="text">Preguntas</span></a></li>
   </ul>
 </nav><!-- nav-foot -->
 <footer class="nav-foot">
-  <p>2015 © <span>MATERIA</span></p>
+  <p>2015 © <span>Wissen</span></p>
 </footer>

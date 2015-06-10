@@ -22,6 +22,7 @@ angular.module('WissenSystem', [
   'ui.grid.selection'
   'angularFileUpload'
   'FBAngular'
+  'ngMaterial'
 ])
 #- Valores que usaremos para nuestro proyecto
 .constant('App', (()->

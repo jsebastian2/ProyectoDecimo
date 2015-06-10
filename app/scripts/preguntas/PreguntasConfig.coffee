@@ -4,10 +4,10 @@ angular.module('WissenSystem')
 
 	$stateProvider
 
-	.state('preguntas', { #- Estado admin.
-				url: '/preguntas_malas'
+	.state('panel.preguntas', { #- Estado admin.
+				url: '^/preguntas_malas'
 				views:
-					'principal':
+					'contenido_panel':
 						templateUrl: "#{App.views}preguntas/preguntas.tpl.html"
 						controller: 'PreguntasCtrl'
 

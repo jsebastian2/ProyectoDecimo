@@ -14,32 +14,34 @@ nav.site-nav.clearfix(role="navigation")
 
 	// navigation
 	ul.list-unstyled.clearfix.nav-list.mb15(highlight-active="")
-		li.active
-			a(href="materiales/Materia.html" md-ink-ripple="")
+		li(ng-class="{active: $state.is('panel') }")
+			a(href="" ui-sref="panel" md-ink-ripple="")
 				i.ion.ion-monitor
-				span.text Dashboard
+				span.text Inicio
 
-		li
-			a(href="javascript:;" md-ink-ripple="")
+		li(ui-sref-active="active")
+			a(href="" ui-sref="panel.preguntas")
+				i.ion.ion-clipboard
+				span.text Preguntas
+
+
+		li(ui-sref-active="active")
+			a(href="" md-ink-ripple="")
 				i.ion.ion-asterisk
-				span.text Icons
+				span.text Construcción
 				i.arrow.ion-chevron-left
 				span.badge.badge-xs.badge-primary 2
 
 			ul.inner-drop.nested.list-unstyled
 				li 
-					a(href="http://solutionportal.net/projects/materia/angular/#/icons/font-awesome" md-ink-ripple="") Font Awesome
+					a(href="" md-ink-ripple="") Font Awesome
 				li 
-					a(href="http://solutionportal.net/projects/materia/angular/#/icons/ionicons" md-ink-ripple="") Ionicons
+					a(href="" md-ink-ripple="") Ionicons
 
-		li
-			a(href="" ui-sref="preguntas" md-ink-ripple="")
-				i.ion.ion-clipboard
-				span.text Preguntas
 		
 
 
 <!-- nav-foot -->
 footer.nav-foot
 	p 2015 © 
-		span MATERIA
+		span Wissen

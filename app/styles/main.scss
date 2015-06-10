@@ -223,7 +223,7 @@ input.ng-valid.ng-dirty {
 .has-success .form-control:focus,
 input.ng-valid.ng-dirty:focus {
   border-color: #31d5a2;
-  background: #e3f9f2;
+  //background: #e3f9f2;
 }
 .has-warning .form-control {
   border-color: #ecdb92;
@@ -5435,3 +5435,22 @@ md-input-container {
 .ps-container:hover > .ps-scrollbar-y-rail > .ps-scrollbar-y {
   background-color: #888;
 }
+
+
+
+
+
+
+// Arreglando
+.nav > li > a:hover, .nav > li > a:focus {
+  background-color: transparent;
+}
+.panel-default > .panel-heading {
+  background-color: #ffffff;
+}
+
+
+
+
+
+
