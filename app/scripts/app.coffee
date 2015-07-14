@@ -8,9 +8,10 @@ angular.module('WissenSystem', [
   'ngSanitize'
   'ngTouch'
   'ui.router'
-  'pascalprecht.translate'
   'ui.bootstrap'
   'ui.select'
+  'ui.sortable'
+  'pascalprecht.translate'
   'angular-loading-bar'
   'restangular'
   'toastr'
@@ -23,17 +24,18 @@ angular.module('WissenSystem', [
   'angularFileUpload'
   'FBAngular'
   'ngMaterial'
+  'froala'
 ])
 #- Valores que usaremos para nuestro proyecto
 .constant('App', (()->
 
-  #dominio = 'http://lalvirtual.com/' 
+  #dominio = 'http://lalvirtual.com/wissen/' 
   dominio = 'http://localhost/' # Pruebas en mi localhost
   
   console.log 'Entra al dominio: ', location.hostname
   
   if(location.hostname.match('lalvirtual'))
-    dominio = 'http://lalvirtual.com/'
+    dominio = 'http://lalvirtual.com/wissen/public'
   
   server = dominio + 'wissenLaravel/public/'
   #server = ''

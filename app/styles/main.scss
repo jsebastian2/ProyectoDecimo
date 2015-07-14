@@ -38,7 +38,7 @@ hr.dotted {
 hr.dashed {
   border-style: dashed;
 }
-.ion,
+.ion, .fa,
 .ionicons {
   line-height: 1.57142857;
   font-size: 16px;
@@ -625,7 +625,7 @@ fieldset[disabled] .btn-twitter.active {
   color: #79cef6;
   background-color: #ffffff;
 }
-.btn-twitter .ion {
+.btn-twitter .ion, .btn-twitter .fa {
   font-size: 13px;
 }
 .btn-twitter.icon {
@@ -692,7 +692,7 @@ fieldset[disabled] .btn-facebook.active {
   color: #3b5998;
   background-color: #ffffff;
 }
-.btn-facebook .ion {
+.btn-facebook .ion,.btn-facebook .fa {
   font-size: 13px;
 }
 .btn-facebook.icon {
@@ -759,7 +759,7 @@ fieldset[disabled] .btn-gplus.active {
   color: #dd4a38;
   background-color: #ffffff;
 }
-.btn-gplus .ion {
+.btn-gplus .ion, .btn-gplus .fa {
   font-size: 13px;
 }
 .btn-gplus.icon {
@@ -826,7 +826,7 @@ fieldset[disabled] .btn-instagram.active {
   color: #82685a;
   background-color: #ffffff;
 }
-.btn-instagram .ion {
+.btn-instagram .ion, .btn-instagram .fa {
   font-size: 13px;
 }
 .btn-instagram.icon {
@@ -893,7 +893,7 @@ fieldset[disabled] .btn-vimeo.active {
   color: #63879c;
   background-color: #ffffff;
 }
-.btn-vimeo .ion {
+.btn-vimeo .ion, .btn-vimeo .fa {
   font-size: 13px;
 }
 .btn-vimeo.icon {
@@ -960,7 +960,7 @@ fieldset[disabled] .btn-flickr.active {
   color: #0061db;
   background-color: #ffffff;
 }
-.btn-flickr .ion {
+.btn-flickr .ion,.btn-flickr .fa {
   font-size: 13px;
 }
 .btn-flickr.icon {
@@ -1027,7 +1027,7 @@ fieldset[disabled] .btn-github.active {
   color: #3b3b3b;
   background-color: #ffffff;
 }
-.btn-github .ion {
+.btn-github .ion,.btn-github .fa {
   font-size: 13px;
 }
 .btn-github.icon {
@@ -1094,7 +1094,7 @@ fieldset[disabled] .btn-linkedin.active {
   color: #018faf;
   background-color: #ffffff;
 }
-.btn-linkedin .ion {
+.btn-linkedin .ion, .btn-linkedin .fa {
   font-size: 13px;
 }
 .btn-linkedin.icon {
@@ -1161,7 +1161,7 @@ fieldset[disabled] .btn-pinterest.active {
   color: #d73532;
   background-color: #ffffff;
 }
-.btn-pinterest .ion {
+.btn-pinterest .ion, .btn-pinterest .fa {
   font-size: 13px;
 }
 .btn-pinterest.icon {
@@ -1228,7 +1228,7 @@ fieldset[disabled] .btn-dribbble.active {
   color: #ea73a0;
   background-color: #ffffff;
 }
-.btn-dribbble .ion {
+.btn-dribbble .ion, .btn-dribbble .fa {
   font-size: 13px;
 }
 .btn-dribbble.icon {
@@ -1295,7 +1295,7 @@ fieldset[disabled] .btn-skype.active {
   color: #00b0f6;
   background-color: #ffffff;
 }
-.btn-skype .ion {
+.btn-skype .ion, .btn-skype .fa {
   font-size: 13px;
 }
 .btn-skype.icon {
@@ -1362,7 +1362,7 @@ fieldset[disabled] .btn-behance.active {
   color: #b80638;
   background-color: #ffffff;
 }
-.btn-behance .ion {
+.btn-behance .ion, .btn-behance .fa {
   font-size: 13px;
 }
 .btn-behance.icon {
@@ -1429,7 +1429,7 @@ fieldset[disabled] .btn-rss.active {
   color: #f79638;
   background-color: #ffffff;
 }
-.btn-rss .ion {
+.btn-rss .ion, .btn-rss .fa {
   font-size: 13px;
 }
 .btn-rss.icon {
@@ -1496,7 +1496,7 @@ fieldset[disabled] .btn-youtube.active {
   color: #cc181e;
   background-color: #ffffff;
 }
-.btn-youtube .ion {
+.btn-youtube .ion, .btn-youtube .fa {
   font-size: 13px;
 }
 .btn-youtube.icon {
@@ -3504,7 +3504,7 @@ fieldset[disabled] .btn-youtube.active {
   top: 50%;
   position: relative;
 }
-.page-forms-uploader .dropzone .drop-info i.ion {
+.page-forms-uploader .dropzone .drop-info i.ion, .page-forms-uploader .dropzone .drop-info i.fa {
   font-size: 72px;
   line-height: 1;
 }
@@ -3895,7 +3895,7 @@ fieldset[disabled] .btn-youtube.active {
 .site-head ul.left-elems > li.notify-drop .dropdown-menu ul li a {
   color: #464646;
 }
-.site-head ul.left-elems > li.notify-drop .dropdown-menu ul li a .ion {
+.site-head ul.left-elems > li.notify-drop .dropdown-menu ul li a .ion, .site-head ul.left-elems > li.notify-drop .dropdown-menu ul li a .fa  {
   padding: 6px 12px;
   color: #fff;
   margin-right: 15px;
@@ -3980,7 +3980,7 @@ fieldset[disabled] .btn-youtube.active {
 .site-head ul.right-elems > li.floating-sidebar .sidebar-wrap .chat-tab .user-container .desc {
   display: inline-block;
 }
-.site-head ul.right-elems > li.floating-sidebar .sidebar-wrap .chat-tab .user-container .desc .ion {
+.site-head ul.right-elems > li.floating-sidebar .sidebar-wrap .chat-tab .user-container .desc .ion, .site-head ul.right-elems > li.floating-sidebar .sidebar-wrap .chat-tab .user-container .desc .fa {
   font-size: 11px;
 }
 .site-head ul.right-elems > li.floating-sidebar .sidebar-wrap .chat-tab .user-container .avail {
@@ -4159,7 +4159,7 @@ fieldset[disabled] .btn-youtube.active {
 .main-container .nav-wrap .site-nav .nav-list > li a .badge {
   margin-top: 12px;
 }
-.main-container .nav-wrap .site-nav .nav-list > li a i.ion {
+.main-container .nav-wrap .site-nav .nav-list > li a i.ion, .main-container .nav-wrap .site-nav .nav-list > li a i.fa  {
   display: inline-block;
   font-size: 16px;
   padding: 5px 0;
@@ -4177,7 +4177,8 @@ fieldset[disabled] .btn-youtube.active {
   font-size: 12px;
 }
 .main-container .nav-wrap .site-nav .nav-list > li a .arrow {
-  margin-left: 150px;
+  margin-left: 130px;
+  margin-top: 0px;
   font-size: 9px;
   color: #464646;
 }
@@ -4198,7 +4199,9 @@ fieldset[disabled] .btn-youtube.active {
   color: #464646;
 }
 .main-container .nav-wrap .site-nav .nav-list li.active a i.ion,
-.main-container .nav-wrap .site-nav .nav-list li.open > a i.ion {
+.main-container .nav-wrap .site-nav .nav-list li.open > a i.ion,
+.main-container .nav-wrap .site-nav .nav-list li.active a i.fa,
+.main-container .nav-wrap .site-nav .nav-list li.open > a i.fa {
   color: #fff;
   border-color: #8aa2ae;
   background: #607d8b;
@@ -4805,11 +4808,11 @@ md-input-container {
   color: #e91e63;
   text-shadow: rgba(61, 61, 61, 0.3) 1px 1px, rgba(61, 61, 61, 0.2) 2px 2px, rgba(61, 61, 61, 0.3) 3px 3px;
 }
-.page-err .err-container .m404 .ion {
+.page-err .err-container .m404 .ion, .page-err .err-container .m404 .fa {
   font-size: 36px;
   color: #464646;
 }
-.page-err .err-container .m404 .ion:hover {
+.page-err .err-container .m404 .ion:hover, .page-err .err-container .m404 .fa:hover {
   color: #3f51b5;
 }
 .page-err .err-container .text-desc {
@@ -5449,8 +5452,92 @@ md-input-container {
   background-color: #ffffff;
 }
 
+md-input-container label.confroala {
+  top: -65px !important;
+}
+a:hover, a:focus {
+  text-decoration: none;
+}
+
+.froala-box{
+  border: solid;
+  border-width: 0 0 1px 0;
+  border-color: rgba(0,0,0,0.12);
+}
+
+.textblue{
+  color: #00F !important;
+}
+
+.md-toast {
+
+}
+.md-top {
+z-index: 999000;
+position: fixed;
+top: 66px; // size of my navbar + 16px
+}
+
+.md-right {
+z-index: 999000;
+position: fixed;
+right: 16px;
+}
+
+
+.opciones md-whiteframe {
+  background: #fff;
+  margin: 5px;
+  padding: 10px;
+  white-space: normal;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.14), 0 4px 5px 0 rgba(0, 0, 0, 0.098), 0 1px 10px 0 rgba(0, 0, 0, 0.084);
+
+  &:hover{
+    background: #2196f3;
+    color: #fff;
+  }
+}
+.opciones md-whiteframe.elegida {
+  background: #3f51b5;
+  color: #fff;
+  padding-left: 10px;
+
+}
+
+
+.definicion-preg{
+  padding-left: 20px;
+}
+
+.opcionesedit{
+
+  padding-left: 40px;
+
+  md-input-container{
+    padding-bottom: 1px !important;
+    
+    label{
+      margin-bottom: 0px; 
+    }
+    .md-input{
+      border-width: 0 0 1px 0 !important;
+    }
+  }
+}
+.add-opcion{
+  border-color: #86e6c8 !important;
+  background: #86e6c8 !important
+}
 
 
 
+.pointer{
+  cursor: pointer;
+}
 
-
+.img-gender{
+  width: 70px;
+}
+.rd-gender{
+  display: inline-block !important;
+}

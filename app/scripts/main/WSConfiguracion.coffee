@@ -6,6 +6,22 @@ angular.module('WissenSystem')
 
 	Restangular.setBaseUrl App.Server # Url a la que se harán todas las llamadas.
 
+	###
+	$httpProvider.defaults.headers.post['X-CSRFToken'] = $cookies.csrftoken;
+	$httpProvider.defaults.headers.put['X-CSRFToken'] = $cookies.csrftoken;
+
+	$httpProvider.defaults.useXDomain = true
+	$httpProvider.defaults.xsrfCookieName = 'csrftoken';
+	$httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+	delete $httpProvider.defaults.headers.common['X-Requested-With'];
+	###
+	$httpProvider.defaults.useXDomain = true;
+	#$httpProvider.defaults.withCredentials = true;
+	delete $httpProvider.defaults.headers.common["X-Requested-With"];
+	$httpProvider.defaults.headers.common["Accept"] = "application/json";
+	$httpProvider.defaults.headers.common["Content-Type"] = "application/json";
+	
+
 
 	uiSelectConfig.theme = 'select2'
 	uiSelectConfig.resetSearchInput = true

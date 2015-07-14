@@ -1,35 +1,17 @@
 
 <div class="row">
-  <div class="col-sm-12 col-md-6">
+  <div class="col-sm-12 col-md-8">
     <div class="panel panel-default panel-hovered panel-stacked mb20">
-      <div class="panel-heading">Native Controls</div>
+      <div class="panel-heading">  
+        <md-select placeholder="Idioma" ng-model="idiomaPreg">
+          <md-option ng-repeat="idioma in idiomas" value="{{idioma.id}}">{{idioma.original}}</md-option>
+        </md-select>
+      </div>
       <div class="panel-body">
-        <form role="form" class="form-horizontal">
-          <div class="form-group">
-            <label class="col-md-3 control-label">Normal Control</label>
-            <div class="col-md-9">
-              <input type="text" class="form-control">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label col-md-3">With Hint</label>
-            <div class="col-md-9">
-              <input type="text" placeholder="Hint Text" class="form-control">
-              <p class="text-danger text-right xsmall">hint description</p>
-            </div>
-          </div>
-          <md-button ui-sref="panel">Presioname</md-button>
-          <div layout layout-sm="column">
-            <md-input-container flex>
-              <label>First name</label>
-              <input type="text" ng-model="firstName">
-            </md-input-container>
-            <md-input-container flex>
-              <label>Last Name</label>
-              <input type="text" ng-model="theMax">
-            </md-input-container>
-          </div>
-        </form>
+        <div ng-repeat="pregunta_king in preguntas_king"><br><br>
+          <view-pregunta preguntaking="pregunta_king" idiomapreg="idiomaPreg"></view-pregunta>
+          <md-divider></md-divider>
+        </div>
       </div>
     </div>
   </div>

@@ -1,13 +1,13 @@
 
 <ul class="list-unstyled left-elems">
   <!-- nav trigger/collapse-->
-  <li><a href="" ng-click="toggleNav()" class="nav-trigger ion ion-drag"></a></li>
+  <li><a href="" ng-click="toggleNav()" class="nav-trigger fa fa-bars"></a></li>
   <!--  Search box -->
   <li>
     <div class="form-search hidden-xs">
       <form id="site-search" action="na">
         <input type="search" placeholder="Type here for search..." class="form-control">
-        <button type="submit" class="ion ion-ios-search-strong"></button>
+        <button type="submit" class="fa fa-searchf"></button>
       </form>
     </div>
   </li>
@@ -16,17 +16,29 @@
     <div class="site-logo visible-xs"><a href="#/dashboard" class="text-uppercase h3"><span class="text">Materia</span></a></div>
   </li>
   <!-- fullscreen-->
-  <li ng-click="goFullScreen()" class="fullscreen hidden-xs"><a href=""><i class="ion ion-qr-scanner"></i></a></li>
+  <li ng-click="goFullScreen()" class="fullscreen hidden-xs"><a href=""><i class="fa fa-arrows-alt"></i></a></li>
   <!-- notification drop-->
-  <li dropdown="" class="notify-drop hidden-xs dropdown"><a href="" dropdown-toggle=""><i class="ion ion-speakerphone"></i><span class="badge badge-danger badge-xs circle">3</span></a>
+  <li dropdown="" class="notify-drop hidden-xs dropdown"><a href="" dropdown-toggle=""><i class="fa fa-exclamation-triangle"></i><span class="badge badge-danger badge-xs circle">3</span></a>
     <div custom-scrollbar="" class="panel panel-default dropdown-menu">
       <div class="panel-heading">You have 3 new notifications <a href="javascript:;" class="right btn btn-xs btn-pink mt-3">Show All</a></div>
       <div class="panel-body">
         <ul class="list-unstyled">
-          <li class="clearfix"><a href=""><span class="ion ion-archive left bg-success"></span>
+          <li class="clearfix"><a href=""><span class="fa fa-archive left bg-success"></span>
               <div class="desc"><strong>App downloaded</strong>
                 <p class="small text-muted">1 min ago</p>
               </div></a></li>
+        </ul>
+      </div>
+    </div>
+  </li>
+  <!-- Idiomas-->
+  <li dropdown="" class="notify-drop hidden-xs dropdown"><a href="" dropdown-toggle=""><i class="fa fa-flag-checkered"></i></a>
+    <div custom-scrollbar="" class="panel panel-default dropdown-menu">
+      <div class="panel-heading">Idioma</div>
+      <div class="panel-body">
+        <ul class="list-unstyled">
+          <li ng-repeat="idioma in idiomas" class="clearfix"><a href=""><span class="fa fa-flag left bg-success"></span>
+              <div class="desc"><strong>{{idioma.nombre}}</strong></div></a></li>
         </ul>
       </div>
     </div>
@@ -43,7 +55,7 @@
     </ul>
   </li>
   <!--li.floating-sidebar(ng-class="{'open': floatingSidebar}")-->
-  <li class="floating-sidebar open"><a href="" ng-click="toggleFloatingSidebar()" tabindex="0"><i class="ion ion-grid"></i></a>
+  <li ng-class="{'open': floatingSidebar}" class="floating-sidebar"><a href="" ng-click="toggleFloatingSidebar()"><i class="fa fa-th"></i></a>
     <div custom-scrollbar="" class="sidebar-wrap ps-container ps-active-y">
       <tabset justified="true">
         <tab heading="CHAT">

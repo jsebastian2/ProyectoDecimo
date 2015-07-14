@@ -1,0 +1,136 @@
+.row
+	.col-sm-12.col-md-12
+		
+		.panel.panel-default.panel-hovered.panel-stacked.mb20
+			.panel-heading   
+				| Nuevo
+
+			.panel-body
+
+				form.form-horizontal(ng-submit="guardarNuevo()" name="frm" role="form")
+					.row
+						.col-md-9
+							.form-group
+								label.control-label.col-md-3 Nombre
+								.col-md-9
+									input.form-control(type="text" placeholder="Nombre")
+									p.text-danger.text-right.xsmall Campo obligatorio
+							.form-group
+								label.control-label.col-md-3 Apellidos
+								.col-md-9
+									input.form-control(type="text" placeholder="Apellidos")
+							.form-group
+								label.control-label.col-md-3 Sexo
+								.col-md-9
+									md-radio-group(ng-model="newUsu.sexo")
+										md-radio-button.rd-gender(ng-value="avatar.masculino.abrev" aria-label="{{avatar.masculino.def}}")
+											img.img-gender(ng-src="{{avatar.masculino.img}}")
+											md-tooltip Masculino
+									
+										md-radio-button.rd-gender(ng-value="avatar.femenino.abrev" aria-label="{{avatar.femenino.def}}")
+											img.img-gender(ng-src="{{avatar.femenino.img}}")
+											md-tooltip Femenino
+
+							.form-group
+								label.control-label.col-md-3 Username
+								.col-md-9
+									input.form-control(type="text" placeholder="Username")
+
+							.form-group
+								label.control-label.col-md-3 Email
+								.col-md-9
+									input.form-control(type="text" placeholder="Email")
+							.form-group
+								label.control-label.col-md-3 Celular
+								.col-md-9
+									input.form-control(type="text" placeholder="Celular")
+							.form-group
+								label.control-label.col-md-3 Edad
+								.col-md-9
+									input.form-control(ng-model="newUsu.entidad" type="text" placeholder="Edad")
+						.col-md-3
+
+							md-select(ng-model="newUsu.entidad" placeholder="Entidad")
+								md-option(value="") LAL
+
+							md-select(multiple ng-model="newUsu.niveles" placeholder="Niveles")
+								md-option(value="nivel.id" ng-repeat="nivel in niveles") {{nivel.nombre}}
+
+
+							md-content
+								md-list
+									md-subheader.md-no-sticky
+										| Inscribir en:
+									md-list-item
+										md-checkbox(ng-model="")
+										p Matemáticas A
+										.fa.fa-comments-o.md-secondary(ng-click="")
+									md-list-item
+										md-checkbox(ng-model="")
+										p Matemáticas B
+										.fa.fa-comments-o.md-secondary(ng-click="")
+									md-list-item
+										md-checkbox(ng-model="")
+										p Matemáticas C
+										.fa.fa-comments-o.md-secondary(ng-click="")
+									md-list-item
+										md-checkbox(ng-model="")
+										p Español A
+										.fa.fa-comments-o.md-secondary(ng-click="")
+									md-list-item
+										md-checkbox(ng-model="")
+										p Español B
+										.fa.fa-comments-o.md-secondary(ng-click="")
+
+
+
+
+					.clearfix.right
+						md-button.md-primary(type="submit" ng-disabled="guardando") Guardar
+						md-button.md-default Cancelar
+
+
+.row
+	.col-sm-12.col-md-12
+		
+		.panel.panel-default.panel-hovered.panel-stacked.mb20
+			.panel-heading   
+				| Usuarios
+
+			.panel-body
+
+				.row
+					.col-md-9
+						#grid1.grid(ui-grid="gridOptions" ui-grid-edit ui-grid-resize-columns style="height: 600px")
+					.col-md-3
+						md-content
+							md-list
+								md-subheader.md-no-sticky
+									| Inscribir en:
+								md-list-item
+									md-checkbox(ng-model="")
+									p Matemáticas A
+									.fa.fa-comments-o.md-secondary(ng-click="")
+								md-list-item
+									md-checkbox(ng-model="")
+									p Matemáticas B
+									.fa.fa-comments-o.md-secondary(ng-click="")
+								md-list-item
+									md-checkbox(ng-model="")
+									p Matemáticas C
+									.fa.fa-comments-o.md-secondary(ng-click="")
+								md-list-item
+									md-checkbox(ng-model="")
+									p Español A
+									.fa.fa-comments-o.md-secondary(ng-click="")
+								md-list-item
+									md-checkbox(ng-model="")
+									p Español B
+									.fa.fa-comments-o.md-secondary(ng-click="")
+
+
+
+
+
+
+

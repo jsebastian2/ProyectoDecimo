@@ -1,14 +1,14 @@
 ul.list-unstyled.left-elems
 	// nav trigger/collapse
 	li
-		a.nav-trigger.ion.ion-drag(href="" ng-click="toggleNav()")
+		a.nav-trigger.fa.fa-bars(href="" ng-click="toggleNav()")
 
 	//  Search box 
 	li
 		.form-search.hidden-xs
 			form#site-search(action="na")
 				input.form-control(type="search" placeholder="Type here for search...")
-				button.ion.ion-ios-search-strong(type="submit")
+				button.fa.fa-searchf(type="submit")
 
 
 	// site-logo for mobile nav
@@ -20,12 +20,12 @@ ul.list-unstyled.left-elems
 	// fullscreen
 	li.fullscreen.hidden-xs(ng-click="goFullScreen()")
 		a(href="")
-			i.ion.ion-qr-scanner
+			i.fa.fa-arrows-alt
 
 	// notification drop
 	li.notify-drop.hidden-xs.dropdown(dropdown="")
 		a(href="" dropdown-toggle="")
-			i.ion.ion-speakerphone
+			i.fa.fa-exclamation-triangle
 			span.badge.badge-danger.badge-xs.circle 3
 		
 		.panel.panel-default.dropdown-menu(custom-scrollbar="")
@@ -35,10 +35,26 @@ ul.list-unstyled.left-elems
 				ul.list-unstyled
 					li.clearfix
 						a(href="")
-							span.ion.ion-archive.left.bg-success
+							span.fa.fa-archive.left.bg-success
 							.desc
 								strong App downloaded
 								p.small.text-muted 1 min ago
+
+
+	// Idiomas
+	li.notify-drop.hidden-xs.dropdown(dropdown="")
+		a(href="" dropdown-toggle="")
+			i.fa.fa-flag-checkered
+		
+		.panel.panel-default.dropdown-menu(custom-scrollbar="")
+			.panel-heading Idioma
+			.panel-body
+				ul.list-unstyled
+					li.clearfix(ng-repeat="idioma in idiomas")
+						a(href="")
+							span.fa.fa-flag.left.bg-success
+							.desc
+								strong {{idioma.nombre}}
 
 
 ul.list-unstyled.right-elems.ng-scope
@@ -67,9 +83,9 @@ ul.list-unstyled.right-elems.ng-scope
 
 
 	//li.floating-sidebar(ng-class="{'open': floatingSidebar}")
-	li.floating-sidebar(class="open")
-		a(href='' ng-click='toggleFloatingSidebar()', tabindex='0')
-			i.ion.ion-grid
+	li.floating-sidebar(ng-class="{'open': floatingSidebar}")
+		a(href="" ng-click='toggleFloatingSidebar()')
+			i.fa.fa-th
 		.sidebar-wrap.ps-container.ps-active-y(custom-scrollbar='')
 			
 			tabset(justified="true")

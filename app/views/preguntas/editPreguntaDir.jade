@@ -1,0 +1,68 @@
+.panel.panel-default.panel-hovered.panel-stacked.mb20
+	.panel-heading Editar pregunta en idiomas:  
+
+		md-select(multiple="true" placeholder="Idioma" ng-model="idiomaPreg")
+			md-option(ng-repeat="idioma in idiomas" value="{{idioma.id}}") {{idioma.original}}
+
+
+	.panel-body
+		form.form-horizontal(name="frm" role="form")
+			
+			//
+				.form-group
+					label.control-label.col-md-3 With Hint
+					.col-md-9
+						input.form-control(type="text" placeholder="Hint Text")
+						p.text-danger.text-right.xsmall hint description
+			
+			
+			div(ng-repeat="pregunta in preguntaking.preguntas_traducidas | porIdiomasEdit:idiomaPreg")
+				
+				a.btn-tag.btn-tag-info(md-ink-ripple)
+					| Pregunta en {{pregunta.idioma}}
+
+				.definicion-preg
+					textarea(froala="editorOptions" ng-model="pregunta.enunciado")
+
+
+					div(layout layout-sm="column")
+						md-input-container(flex)
+							label Texto ayuda
+							input(type="text" ng-model="pregunta.ayuda")
+
+
+
+					.opcionesedit(ui-sortable="sortableOptions" ng-model="pregunta.opciones")
+						
+						md-input-container.input-group(flex ng-repeat="opcion in pregunta.opciones")
+							label(ng-show="!opcion.nueva")
+								i.fa.fa-sort 
+								| Opción {{$index+1}}:
+							input.form-control(type="text" ng-model="opcion.definicion" ng-class="{ 'textblue':opcion.is_correct, 'add-opcion':opcion.nueva }" ng-focus="addButtonNewOpcion(pregunta, opcion)")
+							span.input-group-btn(ng-show="!opcion.nueva")
+								
+								md-button.md-icon-button.md-warn(aria-label="Quitar" ng-click="deleteOption(pregunta, opcion)")
+									md-icon.fa.fa-times
+									md-tooltip Quitar opción
+								md-button.md-icon-button(ng-class="{ true:'md-mini md-fab md-primary', false:''}[opcion.is_correct]" aria-label="Correcta" ng-click="setAsCorrect(pregunta, opcion)")
+									md-icon.fa.fa-check
+									md-tooltip Respuesta correcta
+
+
+				br
+
+			div(layout layout-sm="column")
+				md-input-container(flex)
+					{{frm.editor.$dirty}}
+				md-input-container(flex)
+					{{frm.$dirty}}
+			
+			md-button.md-raised.md-default(ng-click="aplicarCambios()" aria-label="Aplicar")
+				md-tooltip Guardar y continuar editando
+				| Aplicar
+			md-button.md-raised.md-primary(ng-click="finalizarEdicion()") 
+				md-tooltip Guardar y finalizar edición
+				| Finalizar
+
+
+

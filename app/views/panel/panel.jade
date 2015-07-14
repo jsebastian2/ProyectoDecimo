@@ -75,7 +75,7 @@ header.site-head.fixedHeader#site-head(ng-class="{'fixedHeader': fixedHeader}" n
 		custom-scrollbar="" ng-include=" 'views/panel/nav.tpl.html' ")
 		.nav-head
 
-	div.content-container.nav-expand.fixedHeader(ng-class="{'nav-expand': navFull, 'fixedHeader': fixedHeader}" id="content")
+	div.content-container.fixedHeader(ng-class="{'nav-expand': navFull, 'fixedHeader': fixedHeader}" id="content")
 		.page.page-dashboard
 
 			.page-wrap(ui-view="contenido_panel")
@@ -89,6 +89,7 @@ header.site-head.fixedHeader#site-head(ng-class="{'fixedHeader': fixedHeader}" n
 								p.small
 								strong Libertad 
 								| 2015
+								md-button(ng-click="conectar()") Presioname
 
 
 	<!-- settings -->

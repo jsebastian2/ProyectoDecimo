@@ -1,0 +1,160 @@
+
+<div class="row">
+  <div class="col-sm-12 col-md-12">
+    <div class="panel panel-default panel-hovered panel-stacked mb20">
+      <div class="panel-heading">
+          
+        Nuevo
+      </div>
+      <div class="panel-body">
+        <form ng-submit="guardarNuevo()" name="frm" role="form" class="form-horizontal">
+          <div class="row">
+            <div class="col-md-9">
+              <div class="form-group">
+                <label class="control-label col-md-3">Nombre</label>
+                <div class="col-md-9">
+                  <input type="text" placeholder="Nombre" class="form-control">
+                  <p class="text-danger text-right xsmall">Campo obligatorio</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3">Apellidos</label>
+                <div class="col-md-9">
+                  <input type="text" placeholder="Apellidos" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3">Sexo</label>
+                <div class="col-md-9">
+                  <md-radio-group ng-model="newUsu.sexo">
+                    <md-radio-button ng-value="avatar.masculino.abrev" aria-label="{{avatar.masculino.def}}" class="rd-gender"><img ng-src="{{avatar.masculino.img}}" class="img-gender">
+                      <md-tooltip>Masculino</md-tooltip>
+                    </md-radio-button>
+                    <md-radio-button ng-value="avatar.femenino.abrev" aria-label="{{avatar.femenino.def}}" class="rd-gender"><img ng-src="{{avatar.femenino.img}}" class="img-gender">
+                      <md-tooltip>Femenino</md-tooltip>
+                    </md-radio-button>
+                  </md-radio-group>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3">Username</label>
+                <div class="col-md-9">
+                  <input type="text" placeholder="Username" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3">Email</label>
+                <div class="col-md-9">
+                  <input type="text" placeholder="Email" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3">Celular</label>
+                <div class="col-md-9">
+                  <input type="text" placeholder="Celular" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3">Edad</label>
+                <div class="col-md-9">
+                  <input ng-model="newUsu.entidad" type="text" placeholder="Edad" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <md-select ng-model="newUsu.entidad" placeholder="Entidad">
+                <md-option value="">LAL</md-option>
+              </md-select>
+              <md-select multiple ng-model="newUsu.niveles" placeholder="Niveles">
+                <md-option value="nivel.id" ng-repeat="nivel in niveles">{{nivel.nombre}}</md-option>
+              </md-select>
+              <md-content>
+                <md-list>
+                  <md-subheader class="md-no-sticky">Inscribir en:</md-subheader>
+                  <md-list-item>
+                    <md-checkbox ng-model=""></md-checkbox>
+                    <p>Matemáticas A</p>
+                    <div ng-click="" class="fa fa-comments-o md-secondary"></div>
+                  </md-list-item>
+                  <md-list-item>
+                    <md-checkbox ng-model=""></md-checkbox>
+                    <p>Matemáticas B</p>
+                    <div ng-click="" class="fa fa-comments-o md-secondary"></div>
+                  </md-list-item>
+                  <md-list-item>
+                    <md-checkbox ng-model=""></md-checkbox>
+                    <p>Matemáticas C</p>
+                    <div ng-click="" class="fa fa-comments-o md-secondary"></div>
+                  </md-list-item>
+                  <md-list-item>
+                    <md-checkbox ng-model=""></md-checkbox>
+                    <p>Español A</p>
+                    <div ng-click="" class="fa fa-comments-o md-secondary"></div>
+                  </md-list-item>
+                  <md-list-item>
+                    <md-checkbox ng-model=""></md-checkbox>
+                    <p>Español B</p>
+                    <div ng-click="" class="fa fa-comments-o md-secondary"></div>
+                  </md-list-item>
+                </md-list>
+              </md-content>
+            </div>
+          </div>
+          <div class="clearfix right">
+            <md-button type="submit" ng-disabled="guardando" class="md-primary">Guardar</md-button>
+            <md-button class="md-default">Cancelar</md-button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12 col-md-12">
+    <div class="panel panel-default panel-hovered panel-stacked mb20">
+      <div class="panel-heading">
+          
+        Usuarios
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-9">
+            <div id="grid1" ui-grid="gridOptions" ui-grid-edit ui-grid-resize-columns style="height: 600px" class="grid"></div>
+          </div>
+          <div class="col-md-3">
+            <md-content>
+              <md-list>
+                <md-subheader class="md-no-sticky">Inscribir en:</md-subheader>
+                <md-list-item>
+                  <md-checkbox ng-model=""></md-checkbox>
+                  <p>Matemáticas A</p>
+                  <div ng-click="" class="fa fa-comments-o md-secondary"></div>
+                </md-list-item>
+                <md-list-item>
+                  <md-checkbox ng-model=""></md-checkbox>
+                  <p>Matemáticas B</p>
+                  <div ng-click="" class="fa fa-comments-o md-secondary"></div>
+                </md-list-item>
+                <md-list-item>
+                  <md-checkbox ng-model=""></md-checkbox>
+                  <p>Matemáticas C</p>
+                  <div ng-click="" class="fa fa-comments-o md-secondary"></div>
+                </md-list-item>
+                <md-list-item>
+                  <md-checkbox ng-model=""></md-checkbox>
+                  <p>Español A</p>
+                  <div ng-click="" class="fa fa-comments-o md-secondary"></div>
+                </md-list-item>
+                <md-list-item>
+                  <md-checkbox ng-model=""></md-checkbox>
+                  <p>Español B</p>
+                  <div ng-click="" class="fa fa-comments-o md-secondary"></div>
+                </md-list-item>
+              </md-list>
+            </md-content>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

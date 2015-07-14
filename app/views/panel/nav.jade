@@ -1,7 +1,7 @@
 .nav-head
 	// site logo
 	a.site-logo.text-uppercase(href="materiales/Materia.html")
-		i.ion.ion-disc
+		i.fa.fa-globe
 		span.text Materia
 
 // Site nav (vertical) 
@@ -16,20 +16,25 @@ nav.site-nav.clearfix(role="navigation")
 	ul.list-unstyled.clearfix.nav-list.mb15(highlight-active="")
 		li(ng-class="{active: $state.is('panel') }")
 			a(href="" ui-sref="panel" md-ink-ripple="")
-				i.ion.ion-monitor
+				i.fa.fa-home
 				span.text Inicio
 
 		li(ui-sref-active="active")
-			a(href="" ui-sref="panel.preguntas")
-				i.ion.ion-clipboard
+			a(href="" ui-sref="panel.usuarios" md-ink-ripple="")
+				i.fa.fa-users
+				span.text Usuarios
+
+		li(ui-sref-active="active")
+			a(href="" ui-sref="panel.preguntas" md-ink-ripple="")
+				i.fa.fa-clipboard
 				span.text Preguntas
 
 
 		li(ui-sref-active="active")
 			a(href="" md-ink-ripple="")
-				i.ion.ion-asterisk
+				i.fa.fa-asterisk
 				span.text Construcción
-				i.arrow.ion-chevron-left
+				i.arrow.fa.fa-angle-left
 				span.badge.badge-xs.badge-primary 2
 
 			ul.inner-drop.nested.list-unstyled

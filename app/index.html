@@ -13,30 +13,29 @@
     <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
-    <link rel="stylesheet" href="bower_components/ionicons/css/ionicons.css" />
+    <link rel="stylesheet" href="bower_components/FroalaWysiwygEditor/css/froala_editor.min.css" />
+    <link rel="stylesheet" href="bower_components/FroalaWysiwygEditor/css/froala_content.min.css" />
+    <link rel="stylesheet" href="bower_components/FroalaWysiwygEditor/css/froala_style.min.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body class="app off-canvas theme-zero nav-expand">
+  <body ng-controller="ApplicationController" class="app off-canvas theme-zero nav-expand" ng-class="{'nav-expand': navFull, 'body-full': bodyFull}">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ng-controller="ApplicationController">
-        
-        <div ui-view="principal"></div>
+    <div ui-view="principal"></div>
        
 
-    </div>
-    
 
 
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID 
      <script>
        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -45,7 +44,7 @@
 
        ga('create', 'UA-XXXXX-X');
        ga('send', 'pageview');
-    </script>
+    </script>-->
 
     <!-- build:js(.) scripts/oldieshim.js -->
     <!--[if lt IE 9]>
@@ -80,12 +79,25 @@
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/FroalaWysiwygEditor/js/froala_editor.min.js"></script>
+    <script src="bower_components/FroalaWysiwygEditor/js/plugins/block_styles.min.js"></script>
+    <script src="bower_components/FroalaWysiwygEditor/js/plugins/colors.min.js"></script>
+    <script src="bower_components/FroalaWysiwygEditor/js/plugins/media_manager.min.js"></script>
+    <script src="bower_components/FroalaWysiwygEditor/js/plugins/tables.min.js"></script>
+    <script src="bower_components/FroalaWysiwygEditor/js/plugins/video.min.js"></script>
+    <script src="bower_components/FroalaWysiwygEditor/js/plugins/font_family.min.js"></script>
+    <script src="bower_components/FroalaWysiwygEditor/js/plugins/font_size.min.js"></script>
+    <script src="bower_components/FroalaWysiwygEditor/js/plugins/char_counter.min.js"></script>
+    <script src="bower_components/angular-froala/src/angular-froala.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/angular-ui-sortable/sortable.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/main/main.js"></script>
+        <script src="scripts/main/froala-sanitize.js"></script>
         <script src="scripts/main/ApplicationController.js"></script>
         <script src="scripts/main/WSConfiguracion.js"></script>
         <script src="scripts/main/WSRun.js"></script>
@@ -100,6 +112,12 @@
         <script src="scripts/entidades/EntidadesCtrl.js"></script>
         <script src="scripts/preguntas/PreguntasConfig.js"></script>
         <script src="scripts/preguntas/PreguntasCtrl.js"></script>
+        <script src="scripts/preguntas/EditPreguntaCtrl.js"></script>
+        <script src="scripts/preguntas/EditPreguntaDir.js"></script>
+        <script src="scripts/preguntas/ViewPreguntaCtrl.js"></script>
+        <script src="scripts/preguntas/ViewPreguntaDir.js"></script>
+        <script src="scripts/usuarios/UsuariosConfig.js"></script>
+        <script src="scripts/usuarios/UsuariosCtrl.js"></script>
 
 
         <script src="scripts/Services/AuthService.js"></script>
