@@ -7,6 +7,19 @@ angular.module('WissenSystem')
 
 
 		$scope.idiomaPreg = 1
+		$scope.showDetail = false
+		$scope.categoria = 1
+
+		$scope.getPreguntasKing = ()->
+
+			Restangular.all('preguntas_king', {dato:'ujno', mas: 'otro'}).getList().then((r)->
+				console.log 'Este es el pedido de preguntas', r
+			(r2)->
+				console.log 'Falló pedido de preguntas', r2
+			)
+
+		$scope.getPreguntasKing()
+
 
 		$scope.preguntas_king = [
 			{
@@ -14,7 +27,7 @@ angular.module('WissenSystem')
 				descripcion: 'Una pregunta para traducir'
 				tipo_pregunta: 'Test' # Test, Multiple, Texto, Lista
 				duracion: 20
-				evento_id: 1
+				categoria_id: 1
 				added_by: 1
 				preguntas_traducidas: [
 					{
@@ -78,7 +91,7 @@ angular.module('WissenSystem')
 				descripcion: 'Otra pregunta'
 				tipo_pregunta: 'Test' # Test, Multiple, Texto, Lista
 				duracion: 20
-				evento_id: 1
+				categoria_id: 1
 				added_by: 1
 				preguntas_traducidas: [
 					{
@@ -171,8 +184,93 @@ angular.module('WissenSystem')
 				is_main: false
 			}
 		]
+
+		$scope.categorias = [
+			{	
+				id: 1
+				nombre: 'MtA'
+				nivel_id: 1
+				disciplina_id: 1
+				evento_id: 1
+				categorias_traducidas: [
+					{
+						id: 1
+						nombre: 'Matemáticas A'
+						abrev: 'MatA'
+						categoria_id: 1
+						descripcion: ''
+						idioma_id: 1
+					},
+					{
+						id: 2
+						nombre: 'Mathematics A'
+						abrev: 'MathA'
+						categoria_id: 1
+						descripcion: ''
+						idioma_id: 2
+					}
+				]
+			},
+			{	
+				id: 2
+				nombre: 'MtB'
+				nivel_id: 2
+				disciplina_id: 1
+				evento_id: 1
+				categorias_traducidas: [
+					{
+						id: 3
+						nombre: 'Matemáticas B'
+						abrev: 'MatB'
+						categoria_id: 2
+						descripcion: ''
+						idioma_id: 1
+					},
+					{
+						id: 4
+						nombre: 'Mathematics B'
+						abrev: 'MathB'
+						categoria_id: 2
+						descripcion: ''
+						idioma_id: 2
+					}
+				]
+			}
+		]
 	]
 )
+
+
+
+.filter('pregsByCats', [ ->
+	(input, categoria) ->
+		
+		resultado = []
+
+		for preg in input
+	
+			if preg.categoria_id == parseFloat(categoria)
+				resultado.push preg
+
+		return resultado
+])
+
+
+
+
+.filter('catsByIdioma', [ ->
+	(input, idioma) ->
+		
+		resultado = []
+
+		for cat in input
+	
+			if cat.idioma_id == parseFloat(idioma)
+				resultado.push cat
+
+		return resultado
+])
+
 
 
 

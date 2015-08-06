@@ -55,13 +55,20 @@ angular.module('WissenSystem')
 			opt.preg_id = preg.id
 			opt.nueva = false
 			console.log('Opción guardada')
-			'''
-			Restangular.one('option', {opt}).customPUT().then((r)->
+			# {opt}
+			Restangular.one('api/pregunta_king/update').customPOST().then((r)->
 				console.log('Opción guardada')
 			, (r2)->
 				console.log('No se pudo guardar la opción')
 			)
-			'''
+			
+
+			Restangular.one('api/pregunta_king').customGET().then((r)->
+				console.log 'Lo logré!!', r
+			(r2)->
+				console.log 'Pailas con el origin'
+			)
+			
 
 		$scope.addButtonNewOpcion = (preg, opt)->
 			if opt.nueva

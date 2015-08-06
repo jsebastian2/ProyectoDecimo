@@ -2,17 +2,26 @@
 	.col-sm-12.col-md-8
 		
 		.panel.panel-default.panel-hovered.panel-stacked.mb20
-			.panel-heading   
+			.panel-heading()
 
 				md-select(placeholder="Idioma" ng-model="idiomaPreg")
 					md-option(ng-repeat="idioma in idiomas" value="{{idioma.id}}") {{idioma.original}}
 
 
+				md-select(placeholder="Categoría" ng-model="categoria")
+					span(ng-repeat="cat in categorias")
+						md-option(ng-repeat="cat_traduc in cat.categorias_traducidas | catsByIdioma:idiomaPreg" ng-show="cat_traduc.idioma_id==idiomaPreg" value="{{cat_traduc.categoria_id}}") {{cat_traduc.nombre}}
+
+				//md-checkbox(ng-model="showDetail" style="display:inline-block") Detalles
+
+				input.form-control.ancho-200(type="text" ng-model="preg_buscar" placeholder="Buscar")
+
 			.panel-body
 
-				div(ng-repeat="pregunta_king in preguntas_king")
+				div(ng-repeat="pregunta_king in preguntas_king | filter:preg_buscar | pregsByCats:categoria")
 					br
 					br
 					view-pregunta(preguntaking="pregunta_king" idiomapreg="idiomaPreg")
 					md-divider
-				
+
+				add-pregunta(preguntasking="preguntas_king")

@@ -63,6 +63,40 @@ angular.module('WissenSystem')
 			}
 		}
 
+		$scope.categorias = [
+			{
+				id: 1
+				nombre: 'MatA'
+				nivel_id: 1
+				disciplina_id: 1
+				evento_id: 1
+				categorias_traducidas: [
+					{
+						id: 1
+						nombre: 'Matemáticas A'
+						abrev: 'MatA'
+						categoria_id: 1
+						descripcion: ''
+						idioma_id: 1
+						traducido_at: true
+					}
+				]
+			},
+			{
+				id: 1
+				nombre: 'MatB'
+				nivel_id: 1
+				disciplina_id: 1
+				evento_id: 1
+			},
+			{
+				id: 1
+				nombre: 'EspA'
+				nivel_id: 1
+				disciplina_id: 1
+				evento_id: 1
+			}
+		]
 
 		$scope.editar = (row)->
 			console.log 'Presionado para editar fila: ', row
