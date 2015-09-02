@@ -28,7 +28,7 @@ angular.module('WissenSystem')
 
 
 	#- Definimos los estados
-	$urlRouter.otherwise('/')
+	$urlRouter.otherwise('/login')
 
 	$state
 	.state('main', { #- Estado raiz que no necesita autenticación.

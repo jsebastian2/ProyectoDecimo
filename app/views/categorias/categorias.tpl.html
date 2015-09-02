@@ -1,0 +1,15 @@
+
+<md-select placeholder="Idioma" ng-model="idiomaPreg">
+  <md-option ng-repeat="idioma in idiomas" value="{{idioma.id}}">{{idioma.original}}</md-option>
+</md-select><br><br>
+<tabset>
+  <tab heading="{{'CATEGORIAS_TITLE' | translate}}">
+    <categorias-dir></categorias-dir>
+  </tab>
+  <tab heading="{{'NIVELES_TITLE' | translate}}">
+    <niveles-dir></niveles-dir>
+  </tab>
+  <tab heading="{{'DISCIPLINA_TITLE' | translate}}">
+    <disciplinas-dir></disciplinas-dir>
+  </tab>
+</tabset>

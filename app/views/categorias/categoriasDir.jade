@@ -1,0 +1,59 @@
+div(ng-repeat="categoriaking in categorias_king")
+
+	md-whiteframe.md-whiteframe-z2.definicion-frame(layout ng-repeat="categoria in categoriaking.categorias_traducidas  | porIdioma:idiomaPreg" ng-hide ="categoriaking.editando" style="padding: 10px")
+		span(flex="10") {{$parent.$index+1}}.
+		span(flex="90") {{categoria.nombre}}
+
+
+		div.btn-container-edit(layout="row")
+
+			md-button.md-fab.md-primary.md-mini(aria-label="Editar" ng-click="editarCategoria(categoriaking)")
+				md-icon.fa.fa-pencil
+				md-tooltip Editar Categorias
+
+			md-button.md-fab.md-warn.md-mini(aria-label="Eliminar" ng-click="eliminarCategoria(categoriaking)")
+				md-icon.fa.fa-trash
+				md-tooltip Eliminar Categorias
+
+
+
+	div(ng-show ="categoriaking.editando" style="margin-top: 20px")
+		.panel.panel-default.panel-hovered.panel-stacked.mb20
+			.panel-heading Editar categoria en idiomas:
+
+				md-select(multiple="true" placeholder="Idioma" ng-model="idiomasDiscEdit")
+					md-option(ng-repeat="idioma in idiomas" value="{{idioma.id}}") {{idioma.original}}
+
+			.panel-body
+				form.form-horizontal(name="frm" role="form")
+
+					div(ng-repeat="categoria in categoriaking.categorias_traducidas | porIdiomasEdit:idiomasDiscEdit")
+									
+						a.btn-tag.btn-tag-info(md-ink-ripple)
+							| Categoria en {{categoria.idioma}}
+
+						.row(style="padding-left: 50px; ")
+							.col-lg-4.col-sm-5.col-xs-12
+								.form-group
+									label Nombre categoria:
+									input.form-control(type="text" ng-model="categoria.nombre")
+							.col-lg-4.col-sm-5.col-xs-12
+								.form-group
+									label Nivel:
+									md-select(placeholder="Nivel" ng-model="categoria.nivel_id")
+										md-option(ng-repeat="nivelking in niveles_king" value="{{nivelking.id}}") {{nivelking.nombre}}
+							.col-lg-4.col-sm-5.col-xs-12
+								.form-group
+									label Disciplina:
+									md-select(placeholder="Disciplina" ng-model="categoria.disciplina_id")
+										md-option(ng-repeat="disciplinaking in disciplinas_king" value="{{disciplinaking.id}}") {{disciplinaking.nombre}}
+							
+
+							.col-lg-2.col-sm-2.col-xs-12
+								.form-group
+									md-checkbox(ng-model="categoria.traducido" aria-label="¿Traducido?")
+										| ¿Traducido?
+
+					.clearfix.right
+						md-button.md-primary(type="submit" ng-disabled="guardando(categoriaking)") Aplicar
+						md-button.md-default(ng-click="finalizar_edicion(categoriaking)") Finalizar

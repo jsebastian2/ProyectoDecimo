@@ -44,5 +44,24 @@ angular.module('WissenSystem')
 		}
 	]
 
+	$scope.eventos = [
+		{
+			nombre: 'Olimpiadas 2014'
+			descripcion: 'Las hechas en Cúcuta'
+			with_pay: true
+		},
+		{
+			nombre: 'OAL 2015'
+			descripcion: 'Las primeras de la Unión'
+			with_pay: false
+		},
+		{
+			nombre: 'Olimpiadas 2016'
+			descripcion: 'Las hechas en Medellin'
+			with_pay: true
+		}
+	]
 
+
+	
 ])

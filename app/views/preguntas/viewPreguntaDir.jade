@@ -1,6 +1,6 @@
 div(ng-repeat="pregunta in preguntaking.preguntas_traducidas | porIdioma:idiomapreg")
 	div(ng-show="!preguntaking.editando")
-		md-whiteframe.md-whiteframe-z2(layout style="padding: 10px")
+		md-whiteframe.md-whiteframe-z2.definicion-frame(layout style="padding: 10px")
 			span(flex="10") {{$index+1}}.
 			span(ng-bind-html="pregunta.enunciado" flex="90")
 
@@ -10,7 +10,7 @@ div(ng-repeat="pregunta in preguntaking.preguntas_traducidas | porIdioma:idiomap
 				span(ng-show="pregunta.mostrar_ayuda")
 					| {{pregunta.ayuda}}
 
-			div.btn-container-edit-preg(layout="row")
+			div.btn-container-edit(layout="row")
 				//md-button.md-default.md-raised(ng-click="editarPregunta(preguntaking)") Editar
 
 				md-button.md-fab.md-primary.md-mini(aria-label="Editar" ng-click="editarPregunta(preguntaking)")

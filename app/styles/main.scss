@@ -135,10 +135,17 @@ right: 16px;
   @include ayuda-preg();
 }
 
-.btn-container-edit-preg{
+.definicion-frame:hover .btn-container-edit{
+  opacity: 1;
+}
+
+.definicion-frame .btn-container-edit{
   position: absolute;
   margin-left: -170px;
   margin-top: -10px;
+
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
 

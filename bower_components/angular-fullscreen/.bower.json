@@ -29,6 +29,5 @@
   },
   "_source": "git://github.com/fabiobiondi/angular-fullscreen.git",
   "_target": "~1.0.1",
-  "_originalSource": "angular-fullscreen",
-  "_direct": true
+  "_originalSource": "angular-fullscreen"
 }

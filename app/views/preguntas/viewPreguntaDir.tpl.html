@@ -1,9 +1,9 @@
 
 <div ng-repeat="pregunta in preguntaking.preguntas_traducidas | porIdioma:idiomapreg">
   <div ng-show="!preguntaking.editando">
-    <md-whiteframe layout style="padding: 10px" class="md-whiteframe-z2"><span flex="10">{{$index+1}}.</span><span ng-bind-html="pregunta.enunciado" flex="90"></span>
+    <md-whiteframe layout style="padding: 10px" class="md-whiteframe-z2 definicion-frame"><span flex="10">{{$index+1}}.</span><span ng-bind-html="pregunta.enunciado" flex="90"></span>
       <div ng-show="pregunta.ayuda &amp;&amp; preguntaking.showDetail" ng-click="toggleMostrarAyuda(pregunta)" ng-class="{'ayuda-preg-showed': pregunta.mostrar_ayuda, 'ayuda-preg-hidded':!pregunta.mostrar_ayuda}"><a ng-show="!pregunta.mostrar_ayuda"><i class="fa fa-anchor"></i></a><span ng-show="pregunta.mostrar_ayuda">{{pregunta.ayuda}}</span></div>
-      <div layout="row" class="btn-container-edit-preg">
+      <div layout="row" class="btn-container-edit">
         <!--md-button.md-default.md-raised(ng-click="editarPregunta(preguntaking)") Editar-->
         <md-button aria-label="Editar" ng-click="editarPregunta(preguntaking)" class="md-fab md-primary md-mini">
           <md-icon class="fa fa-pencil-square"></md-icon>
