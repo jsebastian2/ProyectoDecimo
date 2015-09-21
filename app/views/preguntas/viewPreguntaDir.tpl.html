@@ -9,14 +9,33 @@
           <md-icon class="fa fa-pencil-square"></md-icon>
           <md-tooltip>Editar pregunta</md-tooltip>
         </md-button>
-        <md-button aria-label="Eliminar" ng-click="eliminarPregunta(pregunta)" class="md-fab md-warn md-mini">
-          <md-icon class="fa fa-trash"></md-icon>
-          <md-tooltip>Eliminar pregunta</md-tooltip>
-        </md-button>
         <md-button aria-label="Preview" ng-click="previewPregunta(preguntaking)" class="md-icon-button md-mini">
           <md-icon class="fa fa-eye"></md-icon>
           <md-tooltip>Preview</md-tooltip>
         </md-button>
+        <md-menu style="padding:0">
+          <md-button aria-label="Opciones de la pregunta" ng-click="$mdOpenMenu($event)" class="md-icon-button">
+            <md-icon md-menu-origin class="fa fa-align-justify"></md-icon>
+          </md-button>
+          <md-menu-content>
+            <md-menu-item>
+              <md-button ng-click="eliminarPregunta()">
+                <md-icon md-menu-aling-target class="fa fa-trash"></md-icon>Eliminar Pregunta
+              </md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button disabled="disabled" ng-click="asignarExamen(pregunta)">
+                <md-icon class="fa fa-trash"></md-icon>Asignar a Examen
+              </md-button>
+            </md-menu-item>
+            <md-menu-divider></md-menu-divider>
+            <md-menu-item>
+              <md-button ng-click="asignarExamen()">
+                <md-icon class="fa fa-eye"></md-icon>notificacions
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
       </div>
     </md-whiteframe><span ng-show="preguntaking.showDetail">
       <md-list ng-if="preguntaking.tipo_pregunta=='Multiple'">
