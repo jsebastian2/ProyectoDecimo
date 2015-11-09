@@ -3,6 +3,9 @@ angular.module('WissenSystem')
 .run ['$rootScope', 'cfpLoadingBar', '$state', '$stateParams', '$translate', '$cookies', 'Restangular', 'Perfil', 'AuthService', 'AUTH_EVENTS', 'toastr', ($rootScope, cfpLoadingBar, $state, $stateParams, $translate, $cookies, Restangular, Perfil, AuthService, AUTH_EVENTS, toastr) ->
 
 
+
+
+
 	#- Asignamos la información de los estados actuales para poder manipularla en las vistas.
 	$rootScope.$state = $state
 	$rootScope.$stateParams = $stateParams;
@@ -18,7 +21,7 @@ angular.module('WissenSystem')
 	ingresar = ()->
 		#- Si lastState es null, quiere decir que hemos entrado directamente a login sin ser redireccionados.
 		if $rootScope.lastState == null or $rootScope.lastState == 'login' or $rootScope.lastState == '/' or $rootScope.lastState == 'main'
-			$state.transitionTo 'panel' #- Por lo tanto nos vamos a panel después de autenticarnos.
+			$state.go 'panel' #- Por lo tanto nos vamos a panel después de autenticarnos.
 		else
 			$state.transitionTo $rootScope.lastState, $rootScope.lastStateParam #- Si no es null ni login, Nos vamos al último estado.
 		#console.log 'Funcion ingresar. lastState: ', $rootScope.lastState
@@ -52,6 +55,9 @@ angular.module('WissenSystem')
 		toastr.warning 'Lo sentimos, hubo un error o no puedes acceder a esta vista'
 		if $rootScope.lastState != 'panel'
 			$state.transitionTo 'panel'
+		else
+			$state.transitionTo 'login'
+
 
 
 	#- Se ejecuta cuando se trae un nuevo trozo de traducciones
@@ -61,13 +67,15 @@ angular.module('WissenSystem')
 
 
 	$rootScope.$on AUTH_EVENTS.loginSuccess, ()->
-		@
+		#console.log 'logueando con exito'
+		ingresar()
+		
 
 	$rootScope.$on AUTH_EVENTS.loginFailed, (ev)->
 		toastr.error 'Datos incorrecto.', 'No se pudo loguear'
 		console.log 'Evento loginFailed: ', ev
 
-		
+
 
 	$rootScope.$on AUTH_EVENTS.notAuthenticated, (ev)->
 		toastr.warning 'No está autorizado.', 'Acceso exclusivo'

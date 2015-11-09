@@ -1,173 +1,217 @@
 angular.module('WissenSystem')
 
-.controller('UsuariosCtrl', ['$scope', '$http', 'Restangular', '$state', '$cookies', '$rootScope', '$mdToast', 'uiGridConstants' 
-	($scope, $http, Restangular, $state, $cookies, $rootScope, $mdToast, uiGridConstants) ->
+.controller('UsuariosCtrl', ['$scope', '$http', 'Restangular', '$state', '$cookies', '$rootScope', '$mdToast', 'uiGridConstants', '$modal', '$filter', 'App', 'AuthService', 
+	($scope, $http, Restangular, $state, $cookies, $rootScope, $mdToast, uiGridConstants, $modal, $filter, App, AuthService) ->
 
+		AuthService.verificar_acceso()
 
-		$scope.newUsu = {
-			sexo: 'M'
-			niveles: []
+		$scope.imagesPath = App.images
+		$scope.usuarios = []
+		$scope.currentUser = {
+			inscripciones: []
 		}
+		$scope.newUsu = {
+			sexo:'M'
+			nivel:""
+			inscripciones: []
+		}
+		$scope.editando = false
+		$scope.creando = false
 
-		$scope.niveles =  [
-			{
-				id: 1
-				nombre: 'A'
-				evento_id: 1
-				niveles_traducidos: [
-					{
-						id: 1
-						nombre: 'A'
-						descripcion: 'Grupos 6 y 7'
-						idioma_id: 1
-					},
-					{
-						id: 2
-						nombre: 'A'
-						descripcion: 'Groups 6 y 7'
-						idioma_id: 2
+		$scope.comprobar_evento_actual = ()->
+			if $scope.evento_actual
+
+				if $scope.evento_actual.idioma_principal_id
+
+					$scope.idioma.Preg = {
+						selected: $scope.evento_actual.idioma_principal_id
 					}
-				]
-			},
-			{
-				id: 2
-				nombre: 'B'
-				evento_id: 1
-				niveles_traducidos: [
-					{
-						id: 1
-						nombre: 'B'
-						descripcion: 'Grupos 8 y 9'
-						idioma_id: 1
-					},
-					{
-						id: 2
-						nombre: 'B'
-						descripcion: 'Groups 8 y 9'
-						idioma_id: 2
-					}
-				]
-			}
-		]
+	
+			else
+					toastr.warning 'Pimero debes crear o seleccionar un evento actual'
+
+		$scope.comprobar_evento_actual()
+
+		$scope.$on 'cambio_evento_user', ()->
+			$scope.comprobar_evento_actual()
+			$scope.traer_niveles()
+			$scope.traer_entidades()
+			$scope.traer_categorias()
+		$scope.$on 'cambia_evento_actual', ()->
+			$scope.comprobar_evento_actual()	
+
+
+
+
+
+
+		$scope.niveles_king = []
+		$scope.traer_niveles = ()->
+			Restangular.all('niveles/niveles-usuario').getList().then((r)->
+				$scope.niveles_king =  r
+				#console.log 'Niveles traidas: ' , r 
+			, (r2)->
+				toastr.warning 'No se trajeron las niveles', 'Problema'
+				console.log 'No se trajo niveles', r2
+			)
+		$scope.traer_niveles()
+
+
+		$scope.entidades = []
+		$scope.traer_entidades = ()->
+			Restangular.all('entidades').getList().then((r)->
+				$scope.entidades = r
+			, (r2)->
+				toastr.warning 'No se trajeron las entidades', 'Problema'
+				console.log 'No se trajo entidades', r2
+			)
+		$scope.traer_entidades()
+
+
+		$scope.categorias_king1 = []
+		$scope.categorias_king2 = []
+		$scope.traer_categorias = ()->
+			Restangular.all('categorias/categorias-usuarios').getList().then((r)->
+				$scope.categorias_king1 = r
+				angular.copy($scope.categorias_king1, $scope.categorias_king2)
+				#console.log 'Categorias trainas' , r
+			, (r2)->
+				toastr.warning 'No se trajeron las categorias', 'Problema'
+				console.log 'No se trajo categorias', r2
+			)
+		$scope.traer_categorias()
+
+
+
+
+
+
+
 
 		$scope.avatar = {
-			masculino: {
+			masculino:{
 				abrev: 'M'
 				def: 'Masculino'
-				img: 'http://localhost:9000/images/system/avatars/male1.jpg'
+				img: $scope.imagesPath + 'system/avatars/male1.jpg'
 			},
-			femenino: {
-				abrev: 'F'
+			femenino:{
+				abrev: 'f'
 				def: 'Femenino'
-				img: 'http://localhost:9000/images/system/avatars/female1.jpg'
+				img: $scope.imagesPath + 'system/avatars/female1.jpg'
 			}
 		}
 
-		$scope.categorias = [
-			{
-				id: 1
-				nombre: 'MatA'
-				nivel_id: 1
-				disciplina_id: 1
-				evento_id: 1
-				categorias_traducidas: [
-					{
-						id: 1
-						nombre: 'Matemáticas A'
-						abrev: 'MatA'
-						categoria_id: 1
-						descripcion: ''
-						idioma_id: 1
-						traducido_at: true
-					}
-				]
-			},
-			{
-				id: 1
-				nombre: 'MatB'
-				nivel_id: 1
-				disciplina_id: 1
-				evento_id: 1
-			},
-			{
-				id: 1
-				nombre: 'EspA'
-				nivel_id: 1
-				disciplina_id: 1
-				evento_id: 1
-			}
-		]
-
-		$scope.editar = (row)->
-			console.log 'Presionado para editar fila: ', row
-			$state.go('panel.usuarios.editar', {usuario_id: row.id})
-
-		$scope.eliminar = (row)->
-			console.log 'Presionado para eliminar fila: ', row
-
-			modalInstance = $modal.open({
-				templateUrl: App.views + 'usuarios/removeAlumno.tpl.html'
-				controller: 'RemoveUsuariosCtrl'
-				resolve: 
-					usuarios: ()->
-						row
-			})
-			modalInstance.result.then( (alum)->
-				$scope.gridOptions.data = $filter('filter')($scope.gridOptions.data, {alumno_id: '!'+alum.alumno_id})
-				console.log 'Resultado del modal: ', alum
-			)
 
 
-
-		btGrid1 = '<a tooltip="Editar" tooltip-placement="left" class="btn btn-default btn-xs shiny icon-only info" ng-click="grid.appScope.editar(row.entity)"><i class="fa fa-edit "></i></a>'
-		btGrid2 = '<a tooltip="X Eliminar" tooltip-placement="right" class="btn btn-default btn-xs shiny icon-only danger" ng-click="grid.appScope.eliminar(row.entity)"><i class="fa fa-trash "></i></a>'
-	
-
-		$scope.gridOptions = 
-			showGridFooter: true,
-			enableSorting: true,
-			enableFiltering: true,
-			enebleGridColumnMenu: false,
-			columnDefs: [
-				{ field: 'id', displayName:'Id', width: 50, enableCellEdit: false, enableColumnMenu: false}
-				{ name: 'edicion', displayName:'Edición', width: 60, enableSorting: false, enableFiltering: false, cellTemplate: btGrid1 + btGrid2, enableCellEdit: false, enableColumnMenu: false}
-				{ field: 'nombres', filter: {condition: uiGridConstants.filter.CONTAINS}, enableHiding: false }
-				{ field: 'apellidos', filter: { condition: uiGridConstants.filter.CONTAINS }}
-				{ field: 'sexo', width: 60 }
-				{ field: 'username', filter: { condition: uiGridConstants.filter.CONTAINS }, displayName: 'Usuario'}
-				{ field: 'email', enableCellEdit: false, filter: { condition: uiGridConstants.filter.CONTAINS }}
-				{ field: 'cell', displayName:'Celular', filter: { condition: uiGridConstants.filter.CONTAINS }}
-				{ field: 'edad' }
-			],
-			multiSelect: false,
-			#filterOptions: $scope.filterOptions,
-			onRegisterApi: ( gridApi ) ->
-				$scope.gridApi = gridApi
-				gridApi.edit.on.afterCellEdit($scope, (rowEntity, colDef, newValue, oldValue)->
-					console.log 'Fila editada, ', rowEntity, ' Column:', colDef, ' newValue:' + newValue + ' oldValue:' + oldValue ;
-					
-					if newValue != oldValue
-						Restangular.one('usuarios/update', rowEntity.id).customPUT(rowEntity).then((r)->
-							$scope.toastr.success 'Usuario actualizado con éxito', 'Actualizado'
-						, (r2)->
-							$scope.toastr.error 'Cambio no guardado', 'Error'
-							console.log 'Falló al intentar guardar: ', r2
-						)
-					$scope.$apply()
-				)
-
-
-		Restangular.all('usuarios').getList().then((data)->
-			$scope.gridOptions.data = data;
-		)
 
 		$scope.guardando = false
 		$scope.guardarNuevo = ()->
 			$scope.guardando = true
-			console.log('Usuario guardado')
-			$scope.guardando = false
+
+			Restangular.one('usuarios/store').customPOST($scope.newUsu).then((r)->
+				toastr.success 'Usuario guardado con exito.'
+				$scope.usuarios.push r 
+				$scope.guardando = false
+				console.log 'Usuario creado' , r 
+			, (r2)->
+				toastr.warning 'No se creo', 'Problema'
+				console.log 'No se creo', r2
+				$scope.guardando_edicion = false
+			)
+
+
+		$scope.guardando_edicion = false
+		$scope.guardarNuevo = ()->
+			$scope.guardando_edicion = true
+
+			Restangular.one('usuarios/store').customPOST($scope.newUsu).then((r)->
+				toastr.success 'Cambios guardados.'
+				$scope.guardando_edicion = false
+				console.log 'Cambios guardados' , r 
+			, (r2)->
+				toastr.warning 'No se guardo cambios del usuario', 'Problema'
+				console.log 'No se guardo cambios del usuario', r2
+				$scope.guardando_edicion = false
+			)
+
+
+
+		$scope.checkeandoCategorias = (item, list)->
+			return list.index(item) > -1
+
+		$scope.toggle = (item, list)->
+			id = list.indexOf(item);
+			if (idx > -1) then list.splice(idx, 1) else list.push(item)
+
+
+		$scope.checkeandoCategoriasEdit = (item, list)->
+			return list.indexOf(item) > -1
+
+		$scope.toggleEdit = (item, list)->
+			idx = list.indexOf(item);
+			if (idx > -1) then list.splice(idx, 1) else list.push(item)
+
+
+
+		$scope.cancelarNuevo = ()->
+			$scope.creando = false
+
+
+		$scope.cancelarEdicion = ()->
+			$scope.editando = false
+
+
+
+		$scope.cambiarInscripcion = (categoriaking, currentUser)->
+
+			currentUser = currentUser[0]
+
+			categoriaking.cambiando = true
+
+			datos = 
+				usuario_id:		currentUser.id
+				categoria_id:	categoriaking.categoria_id
+
+			if categoriaking.selected
+
+
+				Restangular.one('inscripciones/inscribir').customPUT(datos).then((r)->
+					categoriaking.cambiando = false 
+					console.log 'inscripcion creada', r
+
+					inscrip = $filter('filter')(currentUser.inscripciones, {categoria_id: datos.categoria_id})
+					if inscrip.legth == 0
+						currentUser.inscripciones.push r[0]
+					else
+						inscrip[0].id = r[0].id
+						inscrip[0].deleted_at = r[0].deleted_at
+
+
+				, (r2)->
+					toastr.warning 'No se inscrio el usuario' , 'Problema'
+					console.log 'No se inscribiro el usuario', r2
+					categoriaking.cambiando = false
+					categoriaking.selected = false 
+				)
+			
+			else
+
+				Restangular.one('inscripciones/desiscribir').customPUT(datos).then((r)->
+					Categoriasking.cambiando = false
+					console.log 'inscripcio creada' , r
+
+					currentUser.inscripciones = $filter('filter')(currentUser.inscripciones, {categoria_id: '!' +datps.categoria_id})
+				
+				, (r2)->
+					toastr.warning 'No se quito inscripcion' , 'Problema'
+					console.log 'No se quito inscripcion', r2
+					categoriaking.cambiando = false
+					categoriaking.selected = true
+				)
+
+			
 
 
 		return
-	]
+	]	
 )

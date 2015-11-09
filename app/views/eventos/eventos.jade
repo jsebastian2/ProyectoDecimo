@@ -1,158 +1,204 @@
-h1 {{ 'EVENTS_TITLE' | translate }}
+.panel.panel-default.panel-hovered.panel-stacked.mb20
+	.panel-heading
 
-md-button.md-primary(ng-show="!creando" ng-click="crear_evento()") Crear Evento
+		| {{ 'EVENTS_TITLE' | translate }}
 
+	.panel-body
 
-
-.row(ng-show="creando")
-	.col-sm-12.col-md-12
-		
-		.panel.panel-default.panel-hovered.panel-stacked.mb20
-			.panel-heading   
-				| Nuevo <!-- traducir -->
-
-			.panel-body
-
-				form.form-horizontal(ng-submit="guardar_evento()" name="frm" role="form")
-					.row
-						.col-md-8
-							.form-group
-								label.control-label.col-md-3 Nombre
-								.col-md-9
-									input.form-control(ng-model="newEvent.nombre" type="text" placeholder="Nombre")
-									p.text-danger.text-right.xsmall Campo obligatorio
-							.form-group
-								label.control-label.col-md-3 Descripción
-								.col-md-9
-									input.form-control(ng-model="newEvent.descripcion" type="text" placeholder="Descripción")
-							.form-group
-								label.control-label.col-md-3 Examen actual
-								md-select(ng-model="newEvent.examen_actual_id" placeholder="Selecciona...")
-									md-option(value="1") Para Pruebas
-									md-option(value="2") Para la Final
-							.form-group
-								label.control-label.col-md-3 Con Pago
-								md-checkbox(ng-model="newEvent.with_pay" ng-value="newEvent.with_pay")
-
-							.form-group(ng-show="newEvent.with_pay")
-								label.control-label.col-md-3 Precio 1
-								.col-md-9
-									input.form-control(ng-model="newEvent.precio1" type="number" placeholder="Precio1")
-
-								label.control-label.col-md-3 Precio 2
-								.col-md-9
-									input.form-control(ng-model="newEvent.precio2" type="number" placeholder="Precio2")
-
-								label.control-label.col-md-3 Precio 3
-								.col-md-9
-									input.form-control(ng-model="newEvent.precio3" type="number" placeholder="Precio3")
-
-								label.control-label.col-md-3 Precio 4
-								.col-md-9
-									input.form-control(ng-model="newEvent.precio4" type="number" placeholder="Precio4")
-						.col-md-4
-							.form-group
-								label.control-label Permitir Usuarios de otros evento
-								md-checkbox(ng-model="newEvent.allow_cross_users" ng-value="newEvent.allow_cross_users")
-
-
-							.form-group
-								label.control-label Habilitar Chat Público
-								md-checkbox(ng-model="newEvent.enable_public_chat" ng-value="newEvent.enable_public_chat")
-
-
-							.form-group
-								label.control-label Habilitar Chat Privado
-								md-checkbox(ng-model="newEvent.enable_private_chat" ng-value="newEvent.enable_private_chat")
+		md-button.md-default(ng-show="!creando" ng-click="crear_evento()") Crear Evento
 
 
 
-					.clearfix.right
-						md-button.md-primary(type="submit" ng-disabled="guardando") Guardar
-						md-button.md-default(ng-click="cancelar_newevento()") Cancelar
+		.row(ng-show="creando")
+			.col-sm-12.col-md-12
+				
+				.panel.panel-default.panel-hovered.panel-stacked.mb20
+					.panel-heading   
+						| Nuevo <!-- traducir -->
 
+					.panel-body
 
-md-whiteframe.md-whiteframe-z2.definicion-frame(layout ng-repeat="evento in eventos" style="padding: 10px")
-	span(flex="10") {{$index+1}}.
-	span(flex="90") {{evento.nombre}}
+						form.form-horizontal(ng-submit="guardar_evento()" name="frm" role="form")
+							.row
+								.col-md-8
+									.form-group
+										label.control-label.col-md-3 Nombre
+										.col-md-9
+											input.form-control(ng-model="newEvent.nombre" type="text" placeholder="Nombre")
+											p.text-danger.text-right.xsmall Campo obligatorio
+									.form-group
+										label.control-label.col-md-3 Alias
+										.col-md-9
+											input.form-control(ng-model="newEvent.alias" type="text" placeholder="Alias")
+									.form-group
+										label.control-label.col-md-3 Descripción
+										.col-md-9
+											input.form-control(ng-model="newEvent.descripcion" type="text" placeholder="Descripción")
+									.form-group
+										label.control-label.col-md-3 Examen actual
+										md-select(ng-model="newEvent.examen_actual_id" placeholder="Selecciona...")
+											md-option(value="1") Para Pruebas
+											md-option(value="2") Para la Final
+									.form-group
+										label.control-label.col-md-3 Con Pago
+										md-checkbox(ng-model="newEvent.with_pay" ng-value="newEvent.with_pay")
 
+									.form-group(ng-show="newEvent.with_pay")
+										label.control-label.col-md-3 Precio 1
+										.col-md-9
+											input.form-control(ng-model="newEvent.precio1" type="number" placeholder="Precio1")
 
-	div.btn-container-edit(layout="row")
+										label.control-label.col-md-3 Precio 2
+										.col-md-9
+											input.form-control(ng-model="newEvent.precio2" type="number" placeholder="Precio2")
 
-		md-button.md-fab.md-primary.md-mini(aria-label="Editar" ng-click="editarEvento(evento)")
-			md-icon.fa.fa-pencil
-			md-tooltip Editar envento
+										label.control-label.col-md-3 Precio 3
+										.col-md-9
+											input.form-control(ng-model="newEvent.precio3" type="number" placeholder="Precio3")
 
-		md-button.md-fab.md-warn.md-mini(aria-label="Eliminar" ng-click="eliminarEvento(evento)")
-			md-icon.fa.fa-trash
-			md-tooltip Eliminar envento
+										label.control-label.col-md-3 Precio 4
+										.col-md-9
+											input.form-control(ng-model="newEvent.precio4" type="number" placeholder="Precio4")
+								.col-md-4
 
+									.form-group
+										md-checkbox(ng-model="newEvent.actual" ng-value="newEvent.actual")
+											| Evento Actual
 
-br
-br
-.row(ng-show="editando")
-	.col-sm-12.col-md-12
-		
-		.panel.panel-default.panel-hovered.panel-stacked.mb20
-			.panel-heading   
-				| Editar <!-- traducir -->
+									.form-group
+										md-checkbox(ng-model="newEvent.enable_public_chat" ng-value="newEvent.enable_public_chat")
+											| Habilitar Chat Público
 
-			.panel-body
+									.form-group
+										md-checkbox(ng-model="newEvent.enable_private_chat" ng-value="newEvent.enable_private_chat")
+											| Habilitar Chat privado
 
-				form.form-horizontal(ng-submit="update_evento()" name="frm" role="form")
-					.row
-						.col-md-8
-							.form-group
-								label.control-label.col-md-3 Nombre
-								.col-md-9
-									input.form-control(ng-model="currentEvent.nombre" type="text" placeholder="Nombre")
-									p.text-danger.text-right.xsmall Campo obligatorio
-							.form-group
-								label.control-label.col-md-3 Descripción
-								.col-md-9
-									input.form-control(ng-model="currentEvent.descripcion" type="text" placeholder="Descripción")
-							.form-group
-								label.control-label.col-md-3 Examen actual
-								md-select(ng-model="currentEvent.examen_actual_id" placeholder="Selecciona...")
-									md-option(value="1") Para Pruebas
-									md-option(value="2") Para la Final
-							.form-group
-								label.control-label.col-md-3 Con Pago
-								md-checkbox(ng-model="currentEvent.with_pay" ng-value="currentEvent.with_pay")
+									md-divider
 
-							.form-group(ng-show="currentEvent.with_pay")
-								label.control-label.col-md-3 Precio 1
-								.col-md-9
-									input.form-control(ng-model="currentEvent.precio1" type="number" placeholder="Precio1")
+									.form-group
+										md-checkbox(ng-model="newEvent.es_idioma_unico" ng-value="newEvent.es_idioma_unico")
+											| Usar idioma unico
 
-								label.control-label.col-md-3 Precio 2
-								.col-md-9
-									input.form-control(ng-model="currentEvent.precio2" type="number" placeholder="Precio2")
+										label.control-label Idioma Principal:
+										md-select(placeholder="Seleccione idioma principal" ng-model="newEvent.idioma_principal_id")
+											md-option(ng-repeat="idioma in idiomas" value="{{idioma.id}}") {{idioma.original}} ({{idioma.abrev}}) - {{idioma.nombre}}
 
-								label.control-label.col-md-3 Precio 3
-								.col-md-9
-									input.form-control(ng-model="currentEvent.precio3" type="number" placeholder="Precio3")
-
-								label.control-label.col-md-3 Precio 4
-								.col-md-9
-									input.form-control(ng-model="currentEvent.precio4" type="number" placeholder="Precio4")
-						.col-md-4
-							.form-group
-								label.control-label Permitir Usuarios de otros evento
-								md-checkbox(ng-model="currentEvent.allow_cross_users" ng-value="currentEvent.allow_cross_users")
-
-
-							.form-group
-								label.control-label Habilitar Chat Público
-								md-checkbox(ng-model="currentEvent.enable_public_chat" ng-value="currentEvent.enable_public_chat")
-
-
-							.form-group
-								label.control-label Habilitar Chat Privado
-								md-checkbox(ng-model="currentEvent.enable_private_chat" ng-value="currentEvent.enable_private_chat")
+										div(ng-show="!newEvent.es_idioma_unico")
+											label.control-label Idiomas Extras:
+											ui-select(multiple="true" style="width: 100%" ng-model="newEvent.idioma_extras" theme="select2")
+												ui_select-match(allow-clear="true" placeholder="idiomas a Usar")
+													small(ng-bind-html=" $item.original + ' (' + $item.abrev+ ') ")
+												ui-select-choices(repeat=" idioma in idiomas | filter: {nombre: $select.search}")
+													small(ng-bind-html=" idioma.original + ' ('+idioma.abrev+') - ' + idioma.nombre | highligth: $select.search")
 
 
 
-					.clearfix.right
-						md-button.md-primary(type="submit" ng-disabled="guardando") Guardar
-						md-button.md-default(ng-click="cancelar_currentEvento()") Cancelar
+							.clearfix.right
+
+								md-button.md-primary(type="submit" ng-disabled="guardando") Guardar
+								md-button.md-default(ng-click="cancelar_newevento()") Cancelar
+
+
+
+		md-whiteframe.md-whiteframe-z2.definicion-frame(layout ng-repeat="evento in eventos" style="padding: 10px")
+			span(flex="10") {{$index+1}}.
+			span(flex="90") {{evento.nombre}}
+
+
+			div.btn-container-edit(layout="row")
+
+				md-button.md-fab.md-primary.md-mini(aria-label="Editar" ng-click="editarEvento(evento)")
+					md-icon.fa.fa-pencil
+					md-tooltip Editar envento
+
+				md-button.md-fab.md-warn.md-mini(aria-label="Eliminar" ng-click="eliminarEvento(evento)")
+					md-icon.fa.fa-trash
+					md-tooltip Eliminar envento
+
+
+		br
+		br
+		.row(ng-show="editando")
+			.col-sm-12.col-md-12
+				
+				.panel.panel-default.panel-hovered.panel-stacked.mb20
+					.panel-heading   
+						| Editar <!-- traducir -->
+
+					.panel-body
+
+						form.form-horizontal(ng-submit="update_evento()" name="frm" role="form")
+							.row
+								.col-md-8
+									.form-group
+										label.control-label.col-md-3 Nombre
+										.col-md-9
+											input.form-control(ng-model="currentEvent.nombre" type="text" placeholder="Nombre")
+											p.text-danger.text-right.xsmall Campo obligatorio
+									.form-group
+										label.control-label.col-md-3 Alias
+										.col-md-9
+											input.form-control(ng-model="currentEvent.alias" type="text" placeholder="Alias")
+									.form-group
+										label.control-label.col-md-3 Descripción
+										.col-md-9
+											input.form-control(ng-model="currentEvent.descripcion" type="text" placeholder="Descripción")
+									.form-group
+										label.control-label.col-md-3 Examen actual
+										md-select(ng-model="currentEvent.examen_actual_id" placeholder="Selecciona...")
+											md-option(value="1") Para Pruebas
+											md-option(value="2") Para la Final
+									.form-group
+										label.control-label.col-md-3 Con Pago
+										md-checkbox(ng-model="currentEvent.with_pay" ng-value="currentEvent.with_pay")
+
+									.form-group(ng-show="currentEvent.with_pay")
+										label.control-label.col-md-3 Precio 1
+										.col-md-9
+											input.form-control(ng-model="currentEvent.precio1" type="number" placeholder="Precio1")
+
+										label.control-label.col-md-3 Precio 2
+										.col-md-9
+											input.form-control(ng-model="currentEvent.precio2" type="number" placeholder="Precio2")
+
+										label.control-label.col-md-3 Precio 3
+										.col-md-9
+											input.form-control(ng-model="currentEvent.precio3" type="number" placeholder="Precio3")
+
+										label.control-label.col-md-3 Precio 4
+										.col-md-9
+											input.form-control(ng-model="currentEvent.precio4" type="number" placeholder="Precio4")
+								.col-md-4
+
+									.form-group
+										md-checkbox(ng-model="currentEvent.actual" ng-value="currentEvent.actual")
+											| Evento Actual
+
+									.form-group
+										md-checkbox(ng-model="currentEvent.enable_public_chat" ng-value="currentEvent.enable_public_chat")
+											| Habilitar Chat Público
+
+									.form-group
+										md-checkbox(ng-model="currentEvent.enable_private_chat" ng-value="currentEvent.enable_private_chat")
+											| Habilitar Chat privado
+									md-divider
+
+									.form-group
+										md-checkbox(ng-model="currentEvent.es_idioma_unico" ng-value="currentEvent.es_idioma_unico")
+											| Usar idioma unico
+
+										md-select(placeholder="Seleccione idioma principal" ng-model="currentEvent.idioma_principal_id")
+											md-option(ng-repeat="idioma in idiomas" value="{{idioma.id}}") {{idioma.original}} ({{idioma.abrev}}) - {{idioma.nombre}}
+
+										div(ng-show="!currentEvent.es_idioma_unico")
+											label.control-label Idiomas Extras:
+											ui-select(multiple="true" style="width: 100%" on-remove="quitandoIdiomas($item, $model)" ng-model="currentEvent.idioma_extras" theme="select2" on-select="idiomaSelect($item, $model)")
+												ui_select-match(allow-clear="true" placeholder="idiomas a Usar")
+													small(ng-bind-html=" $item.nombre")
+												ui-select-choices(repeat=" idioma in idiomas | filter: {nombre: $select.search}")
+													small(ng-bind-html=" idioma.original + ' - ' + idioma.nombre | highligth: $select.search")
+
+
+							.clearfix.right
+								md-button.md-primary(type="submit" ng-disabled="guardando") Guardar
+								md-button.md-default(ng-click="cancelar_currentEvento()") Cancelar

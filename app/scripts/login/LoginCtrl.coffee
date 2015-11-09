@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('WissenSystem')
-.controller('LoginCtrl', ['$scope', '$rootScope', 'AUTH_EVENTS', 'AuthService', '$location', 'Restangular', '$cookies', 'Perfil', 'App', ($scope, $rootScope, AUTH_EVENTS, AuthService, $location, Restangular, $cookies, Perfil, App)->
+.controller('LoginCtrl', ['$scope', '$rootScope', 'AUTH_EVENTS', 'AuthService', '$location', 'Restangular', '$cookies', 'Perfil', 'App', 'cfpLoadingBar', ($scope, $rootScope, AUTH_EVENTS, AuthService, $location, Restangular, $cookies, Perfil, App, cfpLoadingBar)->
 	
 	
 	$scope.logoPath = 'images/MyVc-1.gif'
@@ -11,13 +11,14 @@ angular.module('WissenSystem')
 		password: ''
 
 
+	cfpLoadingBar.complete()
+
+
 	#$scope.host = $location.host()
 
-	$scope.login = (credentials)->
+	$scope.login = ()->
 
-		$state.go 'panel'
-
-		user = AuthService.login_credentials(credentials)
+		user = AuthService.login_credentials($scope.credentials)
 		
 		user.then((r)->
 			#console.log 'Promise ganada', r

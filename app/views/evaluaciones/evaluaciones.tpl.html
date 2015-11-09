@@ -1,0 +1,91 @@
+
+<div class="panel panel-default panel-hovered panel-stacked mb20">
+  <div class="panel-heading">{{'EVALUACIONES_MENU' | translate}}</div>
+  <div class="panel-body">
+    <md-button ng-show="!creando" ng-click="crearNuevo()" class="md-primary">Crear nuevo</md-button>
+    <div layout layout-wrap layout-padding>
+      <div flex-gt-md="60" flex-md="100">
+        <!-- Grilla con todas las evaluaciones-->
+        <grid-evaluaciones evaluaciones="evaluaciones" idioma="idioma.select" currenteval="currentEvalua" categoriasking="categorias_king"></grid-evaluaciones>
+      </div>
+      <!-- Formulario para crear-->
+      <div flex-gt-md="40" flex-md="100" ng-show="creando">
+        <h2>Nueva evaluacion</h2>
+        <form layout="column" ng-submit="" layout-margin layout-wrap layout-padding>
+          <div flex>
+            <label>Descripcion:</label>
+            <input type="text" ng-model="newEvaluacion.descripcion" class="form-control">
+          </div>
+          <div flex>
+            <label>Categoria:</label>
+            <md-input-container layout="row" layout-align="start center" style="padding-bottom: 0px; margin-top: -10px;">
+              <md-select placeholder="categoria" ng-model="newEvaluacion.categoria_id"><span ng-repeat="catking in categorias_king">
+                  <md-option ng-repeat="cat_traduc in catking.categorias_traducidas | catsByIdioma:idioma.selected" ng-show="cat_traduc.idioma_id==idioma.selected" value="{{cat_traduc.categoria_id}}">{{cat_traduc.nombre}}</md-option></span></md-select>
+            </md-input-container>
+          </div>
+          <div flex="40" flex-gt-lg="20" flex-sm="100">
+            <md-checkbox ng-model="newEvaluacion.actual" aria-label="Actual">Actual</md-checkbox>
+            <md-tooltip>Sera la evaluacion</md-tooltip>
+          </div>
+          <div flex>
+            <label>Duracion por preguntas:</label>
+            <input placeholder="Duracion pregunta" type="number" ng-model="newEvaluacion.duracion_preg" class="form-control">
+            <md-tooltip>Duracion por pregunta</md-tooltip>
+          </div>
+          <div flex>
+            <label>Duracion por examen:</label>
+            <input placeholder="Duracion examen" type="number" ng-model="newEvaluacion.duracion_exam" class="form-control">
+            <md-tooltip>Duracion por pregunta</md-tooltip>
+          </div>
+          <div flex="40" flex-gt-lg="20" flex-sm="100">
+            <md-checkbox ng-model="newEvaluacion.dirigido" aria-label="Responder una por una">Responder una por una</md-checkbox>
+            <md-tooltip>Responder una por una o todas las preguntas</md-tooltip>
+          </div>
+          <div class="clearfix right">
+            <md-button type="button" ng-click="cancelarNuevo()" class="md-default md-raised">Cancelar</md-button>
+            <md-button type="submit" ng-disabled="guardando" class="md-primary md-raised">Guardar</md-button>
+          </div>
+        </form>
+      </div>
+      <!-- Formulario para editar-->
+      <div flex-gt-md="40" flex-md="100" ng-show="editando">
+        <h2>Editar evaluacion</h2>
+        <form layout="column" ng-submit="" layout-margin layout-wrap layout-padding>
+          <div flex>
+            <label>Descripcion:</label>
+            <input type="text" ng-model="currentEvalua.descripcion" class="form-control">
+          </div>
+          <div flex>
+            <label>Categoria:</label>
+            <md-input-container layout="row" layout-align="start center" style="padding-bottom: 0px; margin-top: -10px;">
+              <md-select placeholder="categoria" ng-model="currentEvalua.categoria_id"><span ng-repeat="catking in categorias_king">
+                  <md-option ng-repeat="cat_traduc in catking.categorias_traducidas | catsByIdioma:idioma.selected" ng-show="cat_traduc.idioma_id==idioma.selected" value="{{cat_traduc.categoria_id}}">{{cat_traduc.nombre}}</md-option></span></md-select>
+            </md-input-container>
+          </div>
+          <div flex="40" flex-gt-lg="20" flex-sm="100">
+            <md-checkbox ng-model="currentEvalua.actual" aria-label="Actual">Actual</md-checkbox>
+            <md-tooltip>Sera la evaluacion</md-tooltip>
+          </div>
+          <div flex>
+            <label>Duracion por preguntas:</label>
+            <input placeholder="Duracion pregunta" type="number" ng-model="currentEvalua.duracion_preg" class="form-control">
+            <md-tooltip>Duracion por pregunta</md-tooltip>
+          </div>
+          <div flex>
+            <label>Duracion por examen:</label>
+            <input placeholder="Duracion examen" type="number" ng-model="currentEvalua.duracion_exam" class="form-control">
+            <md-tooltip>Duracion por pregunta</md-tooltip>
+          </div>
+          <div flex="40" flex-gt-lg="20" flex-sm="100">
+            <md-checkbox ng-model="currentEvalua.dirigido" aria-label="Responder una por una">Responder una por una</md-checkbox>
+            <md-tooltip>Responder una por una o todas las preguntas</md-tooltip>
+          </div>
+          <div class="clearfix right">
+            <md-button type="button" ng-click="cancelarNuevo()" class="md-default md-raised">Cancelar</md-button>
+            <md-button type="submit" ng-disabled="guardando" class="md-primary md-raised">Guardar</md-button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

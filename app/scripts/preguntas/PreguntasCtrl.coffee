@@ -2,277 +2,170 @@
 
 angular.module('WissenSystem')
 
-.controller('PreguntasCtrl', ['$scope', '$http', 'Restangular', '$state', '$cookies', '$rootScope', 'toastr', 
-	($scope, $http, Restangular, $state, $cookies, $rootScope, toastr) ->
+.controller('PreguntasCtrl', ['$scope', '$http', 'Restangular', '$state', '$cookies', '$rootScope', 'toastr', 'preguntasServ', '$filter'
+	($scope, $http, Restangular, $state, $cookies, $rootScope, toastr, preguntasServ, $filter) ->
+
+		$scope.preguntas_king = []
+
+		$scope.grupo = 'grupo'
+		$scope.king = 'king'
+
+		$scope.comprobar_evento_actual = ()->
+			if $scope.evento_actual
+
+				if $scope.evento_actual.idioma_principal_id
+
+					$scope.idiomaPreg = {
+						selected: $scope.evento_actual.idioma_principal_id
+					}
+			else
+				toastr.warning 'Primero debes crear o seleccionar un evento actual'
 
 
-		$scope.idiomaPreg = 1
+		$scope.comprbar_evento_actual()
+
+		$scope.$on 'cambio_evento_user', ()->
+			$scope.comprobar_evento_actual()
+
+		$scope.$on 'cambia_evento_actual', ()->
+			$scope.comprobar_evento_actual()
+
+
+		$scope.creando = false
+		$scope.inicializado = false # Se inicializa cuando haya respuesta por pregunta
+
 		$scope.showDetail = false
-		$scope.categoria = 1
+		$scope.categoria = 0
+		$scope.evaluacion_id = 0
 
-		$scope.getPreguntasKing = ()->
+		$scope.preguntas_king = []
+		$scope.categorias = []
 
-			Restangular.all('preguntas_king', {dato:'ujno', mas: 'otro'}).getList().then((r)->
-				console.log 'Este es el pedido de preguntas', r
-			(r2)->
-				console.log 'Falló pedido de preguntas', r2
+		$scope.traerDatos = ()->
+
+			#Las categorias
+			Restangular.all('categorias/categorias-usuarios').getList().then((r)->
+				$scope.categorias = r
+
+				if $scope.categorias.length > 0
+					$scope.categoria = r[0].id #
+
+					$scope.traerEvaluaciones()
+					$scope.traerPreguntas()
+			, (r2)->
+				console.log 'No se trajeron las categorias', r2
 			)
 
-		$scope.getPreguntasKing()
 
 
-		$scope.preguntas_king = [
-			{
-				id: 4
-				descripcion: 'Una pregunta para traducir'
-				tipo_pregunta: 'Test' # Test, Multiple, Texto, Lista
-				duracion: 20
-				categoria_id: 1
-				added_by: 1
-				preguntas_traducidas: [
-					{
-						id: 1
-						enunciado: '<p>¿Cuánto es <b>dos</b> más dos?</p>'
-						ayuda: 'Este es un texto de ayuda'
-						pregunta_id: 4
-						idioma_id: 1
-						idioma: 'Español'
-						puntos: 5
-						added_by: 1
-						opciones: [
-							{
-								id: 1
-								definicion: 'Primera opción, y necesito meter mucho texto para ver que tal se verá al ingresar más cosas.'
-								is_correct: false
-							},
-							{
-								id: 2
-								definicion: 'Segunda opción'
-								is_correct: true
-							},
-							{
-								id: 3
-								definicion: 'Tercera opción'
-								is_correct: false
-							}
-						]
-					}, 
-					{
-						id: 2
-						enunciado: 'How much is 2+2?'
-						ayuda: ''
-						pregunta_id: 4
-						idioma_id: 2
-						idioma: 'English'
-						puntos: 5
-						added_by: 1
-						opciones: [
-							{
-								id: 4
-								definicion: 'Fist option'
-								is_correct: false
-							},
-							{
-								id: 5
-								definicion: 'Second option'
-								is_correct: true
-							},
-							{
-								id: 6
-								definicion: 'Third option'
-								is_correct: false
-							}
-						]
-					}
-				]
-			},
-			{
-				id: 5
-				descripcion: 'Otra pregunta'
-				tipo_pregunta: 'Test' # Test, Multiple, Texto, Lista
-				duracion: 20
-				categoria_id: 1
-				added_by: 1
-				preguntas_traducidas: [
-					{
-						id: 1
-						enunciado: '<p>¿Quién es más rápido?</p>'
-						ayuda: 'Debes pensar en tu familia'
-						pregunta_id: 5
-						idioma_id: 1
-						idioma: 'Español'
-						puntos: 5
-						added_by: 1
-						opciones: [
-							{
-								id: 7
-								definicion: 'Mi mamá.'
-								is_correct: false
-							},
-							{
-								id:8
-								definicion: 'Mi papá'
-								is_correct: true
-							},
-							{
-								id: 9
-								definicion: 'Mi hermano'
-								is_correct: false
-							},
-							{
-								id: 10
-								definicion: 'Yo'
-								is_correct: false
-							}
-						]
-					}, 
-					{
-						id: 2
-						enunciado: 'Who is the faster one in the family?'
-						ayuda: 'You have to think in your family'
-						pregunta_id: 5
-						idioma_id: 2
-						idioma: 'English'
-						puntos: 5
-						added_by: 1
-						opciones: [
-							{
-								id: 11
-								definicion: 'My mother'
-								is_correct: false
-							},
-							{
-								id: 12
-								definicion: 'My father'
-								is_correct: true
-							},
-							{
-								id: 13
-								definicion: 'My brother'
-								is_correct: false
-							},
-							{
-								id: 14
-								definicion: 'Me'
-								is_correct: false
-							}
-						]
-					}
-				]
-			}
-		]
-			
+
+			$scope.traerDatos()
 
 
-		$scope.$on 'finalizaEdicionPreg', (elem)->
-			console.log 'elem', elem
+		$scope.traerEvaluaciones = ()->
+			# los examenes
+			Restangular.all('evaluaciones').getList({categoria_id: $scope.categoria}).then((r)->
+				$scope.evaluaciones = r
+				#if $scope.evaluaciones
+				#
+			, (r2)->
+				console.log 'no se trajeron las evaluaciones', r2
+			)
 
 
-		$scope.idiomas = [
-			{	
-				id: 1
-				nombre: 'Español'
-				abrev: 'ES'
-				original: 'Español'
-				is_main: true
-			},
-			{	
-				id: 2
-				nombre: 'Inglés'
-				abrev: 'EN'
-				original: 'English'
-				is_main: false
-			}
-		]
+		$scope.traerPreguntas = ()->
+		#las preguntas
+			Restangular.all('preguntas').getList({categoria_id: $scope.categoria}).then((r)->
+				$scope.preguntas_king = r
+				$scope.inicializado = true
+				console.log '$scope.inicializado', $scope.inicializado
+			, (r2)->
+				console.log 'pailas la promesa de las preguntas', r2
+				$scope.inicializado = true
+			)
 
-		$scope.categorias = [
-			{	
-				id: 1
-				nombre: 'MtA'
-				nivel_id: 1
-				disciplina_id: 1
-				evento_id: 1
-				categorias_traducidas: [
-					{
-						id: 1
-						nombre: 'Matemáticas A'
-						abrev: 'MatA'
-						categoria_id: 1
-						descripcion: ''
-						idioma_id: 1
-					},
-					{
-						id: 2
-						nombre: 'Mathematics A'
-						abrev: 'MathA'
-						categoria_id: 1
-						descripcion: ''
-						idioma_id: 2
-					}
-				]
-			},
-			{	
-				id: 2
-				nombre: 'MtB'
-				nivel_id: 2
-				disciplina_id: 1
-				evento_id: 1
-				categorias_traducidas: [
-					{
-						id: 3
-						nombre: 'Matemáticas B'
-						abrev: 'MatB'
-						categoria_id: 2
-						descripcion: ''
-						idioma_id: 1
-					},
-					{
-						id: 4
-						nombre: 'Mathematics B'
-						abrev: 'MathB'
-						categoria_id: 2
-						descripcion: ''
-						idioma_id: 2
-					}
-				]
-			}
-		]
+
+
+		$scope.traerPreguntasYEvaluaciones = ()->
+			$scope.traerPreguntas()
+			$scope.traerEvaluaciones()
+
+
+		$scope.traerPreguntasDeEvaluacion = () ->
+
+			if $scope.evaluacion_id == 'sin_asignar'
+				Restangular.all('pregunta_evaluaciones/solo-sin-asignar').getList({categoria_id: $scope.categoria}).then((r)->
+					$scope.preguntas_king = r
+				, (r2)->
+					console.log 'No se trajo las preguntas sin asignar' , r2
+					$scope.inicializado = true
+				)
+
+			else
+
+				$scopetraerPreguntas()
+
+				found = $filter('filter')($scope.evaluaciones,{id: $scope.evaluacion_id})
+
+				if found.length > 0
+					$scope.pregunta_evaluacion = found[0].pregunta_evaluacion
+
+				console.log '$scope.evaluacion', $scope.evaluacion_id, $scope.pregunta_evaluacion
+
+
+
+
+
+		$scope.$on 'finalizaEdicion', (elem)->
+			#conosola.log 'elem', 'elem'
+
+
+		$scope.$on 'preguntaEliminada', (e, elem)->
+			$scope.preguntas_king = $filter('filter')($scope.preguntas_king, {id: "!" + elem.id, tipo_pregunta: "!undefined"}, true)
+			console.log 'Recibido eliminacion', elem, $filter('filter')($scope.preguntas_king {id: "!" + elem.id, tipo_pregunta: "!undefined"})
+
+
+		$scope.$on 'grupoEliminado', (e, elem)->
+			$scope.preguntas_king = $filter('filter')($scope.preguntas_king, (pregunta_king, index)->
+
+				if pregunta_king.tipo_pregunta # no la eliminamos si es una preguntaking
+					return true
+				else if preguntas_king.id != elem.id
+					return true
+				else
+					return false
+
+			)
+
 	]
-)
+)	
 
 
+.filter('pregsByCatsAndEvaluacion', ['$filter', ($filter)->
+	(input, categoria, pregunta_evaluacion, evaluacion_id)->
 
-.filter('pregsByCats', [ ->
-	(input, categoria) ->
-		
+
 		resultado = []
 
 		for preg in input
-	
-			if preg.categoria_id == parseFloat(categoria)
-				resultado.push preg
+
+			if  parseFloat(preg.categoria_id) == parseFloat(categoria)
+
+				if evaluacion_id and parseFloat(evaluacion_id)!= 0
+					found = false
+
+					if preg.tipo_pregunta
+						found = $filter('filter')(pregunta_evaluacion, {pregunta_id: preg.id })
+					else 
+						found = $filter('filter')(pregunta_evaluacion, {grupo_pregs_id: preg.id})
+					if found.length > 0 
+						resultado.push preg
+				else
+					resultado.push preg
+
+
+
+
 
 		return resultado
 ])
-
-
-
-
-.filter('catsByIdioma', [ ->
-	(input, idioma) ->
-		
-		resultado = []
-
-		for cat in input
-	
-			if cat.idioma_id == parseFloat(idioma)
-				resultado.push cat
-
-		return resultado
-])
-
-
-
-
-
-

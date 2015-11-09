@@ -40,6 +40,17 @@ angular.module('WissenSystem')
 		data: 
 			pageTitle: 'En Construcción'
 	})
+
+	.state('landing', { #- estado raiz que no necesita autenticacion 
+		url: '/landing'
+		views:
+			'principal':
+				templateUrl: "#{App.views}login/login.tpl.html"
+				controller: 'LandingCtrl'
+		data: 
+			pageTitle: 'Liceo Adventista Libertad'
+	})
+	
 	.state('login', { 
 		url: '/login'
 		views:
@@ -65,6 +76,9 @@ angular.module('WissenSystem')
 	#$locationProvider.html5Mode true
 
 	$rootScopeProvider.bigLoader = true
+
+
+
 
 	# Agrego la función findByValues a loDash.
 	_.mixin 

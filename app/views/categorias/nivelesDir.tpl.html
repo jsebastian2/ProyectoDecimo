@@ -14,10 +14,12 @@
   </md-whiteframe>
   <div ng-show="nivelking.editando" style="margin-top: 20px">
     <div class="panel panel-default panel-hovered panel-stacked mb20">
-      <div class="panel-heading">Editar nivel en idiomas:
-        <md-select multiple="true" placeholder="Idioma" ng-model="idiomasDiscEdit">
-          <md-option ng-repeat="idioma in idiomas" value="{{idioma.id}}">{{idioma.original}}</md-option>
-        </md-select>
+      <div ng-show="!eventoactual.es_idioma_unico" layout style="height: 40;" class="panel-heading"><span>Editar nivel en idiomas:</span>
+        <md-input-container layout="row" layout-aling="start center" style="padding-bottom: 0px; margin-top: -10px;">
+          <md-select multiple="true" placeholder="Idioma" ng-model="nivelking.idiomasEdit" ng-init="nivelking.idiomasEdit =[eventoactual.idioma_principal_id]">
+            <md-option ng-repeat="idioma in eventoactual.idiomas" value="{{idioma.id}}">{{idioma.original}}</md-option>
+          </md-select>
+        </md-input-container>
       </div>
       <div class="panel-body">
         <form name="frm" role="form" class="form-horizontal">
@@ -35,7 +37,7 @@
                   <input type="text" ng-model="nivel.descripcion" class="form-control">
                 </div>
               </div>
-              <div class="col-lg-2 col-sm-2 col-xs-12">
+              <div ng-if="!evento_actual.es_idioma_unico" class="col-lg-2 col-sm-2 col-xs-12">
                 <div class="form-group">
                   <md-checkbox ng-model="nivel.traducido" aria-label="¿Traducido?">¿Traducido?</md-checkbox>
                 </div>
@@ -43,6 +45,7 @@
             </div>
           </div>
           <div class="clearfix right">
+            <md-button ng-click="cerrar_edicion(nivelking)" class="md-default">Cerrar</md-button>
             <md-button type="submit" ng-disabled="guardando(nivelking)" class="md-primary">Aplicar</md-button>
             <md-button ng-click="finalizar_edicion(nivelking)" class="md-default">Finalizar</md-button>
           </div>
@@ -51,3 +54,4 @@
     </div>
   </div>
 </div>
+<md-button type="md-button" ng-disabled="creando" ng-click="crear_nivel()" class="md-primary">Crear disciplina</md-button>

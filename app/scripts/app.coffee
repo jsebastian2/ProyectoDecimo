@@ -25,17 +25,22 @@ angular.module('WissenSystem', [
   'FBAngular'
   'ngMaterial'
   'froala'
+  'ngCordova'
 ])
 #- Valores que usaremos para nuestro proyecto
 .constant('App', (()->
 
   #dominio = 'http://lalvirtual.com/wissen/' 
-  dominio = 'http://localhost/' # Pruebas en mi localhost
+  #dominio = 'http://localhost/' # Pruebas en mi localhost
+  dominio = 'http://olimpiadaslibertad.com/'
   
   console.log 'Entra al dominio: ', location.hostname
   
   if(location.hostname.match('lalvirtual'))
-    dominio = 'http://lalvirtual.com/wissen/public'
+    dominio = 'http://lalvirtual.com/wissen/'
+
+  if(location.hostname.match('olimpiadaslibertad'))
+    dominio = 'http://olimpiadaslibertad.com/'
   
   server = dominio + 'wissenLaravel/public/'
   #server = ''
@@ -49,6 +54,8 @@ angular.module('WissenSystem', [
     views: 'views/'
     #views: server + 'views/dist/views/' # Para el server Laravel
     images: server + 'images/'
+    perfilPath: server + 'images/perfil/'
+    imgSystemPath: server + 'images/eventos/'
   }
 )())
 

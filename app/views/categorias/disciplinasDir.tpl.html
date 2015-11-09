@@ -14,35 +14,38 @@
   </md-whiteframe>
   <div ng-show="disciplinaking.editando" style="margin-top: 20px">
     <div class="panel panel-default panel-hovered panel-stacked mb20">
-      <div class="panel-heading">Editar pregunta en idiomas:
-        <md-select multiple="true" placeholder="Idioma" ng-model="idiomasDiscEdit">
-          <md-option ng-repeat="idioma in idiomas" value="{{idioma.id}}">{{idioma.original}}</md-option>
-        </md-select>
+      <div ng-show="!eventoactual.es_idioma_unico" layout style="height: 40;" class="panel-heading"><span>Editar disciplina en idiomas:</span>
+        <md-input-container layout="row" layout-aling="start center" style="padding-bottom: 0px; margin-top: -10px;">
+          <md-select multiple="true" placeholder="Idioma" ng-model="disciplinaking.idiomasEdit" ng-init="disciplinaking.idiomasEdit =[eventoactual.idioma_principal_id]">
+            <md-option ng-repeat="idioma in eventoactual.idiomas" value="{{idioma.id}}">{{idioma.original}}</md-option>
+          </md-select>
+        </md-input-container>
       </div>
       <div class="panel-body">
         <form name="frm" role="form" class="form-horizontal">
-          <div ng-repeat="pregunta in disciplinaking.disciplinas_traducidas | porIdiomasEdit:idiomasDiscEdit"><a md-ink-ripple class="btn-tag btn-tag-info">Disciplina en {{pregunta.idioma}}</a>
+          <div ng-repeat="disciplina in disciplinaking.categorias_traducidas | porIdiomasEdit:idiomasDiscEdit"><a md-ink-ripple class="btn-tag btn-tag-info">Disciplia en {{disciplina.idioma}}</a>
             <div style="padding-left: 50px; " class="row">
               <div class="col-lg-4 col-sm-5 col-xs-12">
                 <div class="form-group">
-                  <label>Nombre disciplina:</label>
-                  <input type="text" ng-model="disciplina.nombre" class="form-control">
+                  <label>Nombre nivel:</label>
+                  <input type="text" ng-model="nivel.nombre" class="form-control">
                 </div>
               </div>
               <div class="col-lg-4 col-sm-5 col-xs-12">
                 <div class="form-group">
                   <label>Descripcion:</label>
-                  <input type="text" ng-model="disciplina.descripcion" class="form-control">
+                  <input type="text" ng-model="nivel.descripcion" class="form-control">
                 </div>
               </div>
               <div class="col-lg-2 col-sm-2 col-xs-12">
                 <div class="form-group">
-                  <md-checkbox ng-model="disciplina.traducido" aria-label="¿Traducido?">¿Traducido?</md-checkbox>
+                  <md-checkbox ng-model="nivel.traducido" aria-label="¿Traducido?">¿Traducido?</md-checkbox>
                 </div>
               </div>
             </div>
           </div>
           <div class="clearfix right">
+            <md-button ng-click="cerrar_edicion(disciplinaking)" class="md-default">Cerrar</md-button>
             <md-button type="submit" ng-disabled="guardando(disciplinaking)" class="md-primary">Aplicar</md-button>
             <md-button ng-click="finalizar_edicion(disciplinaking)" class="md-default">Finalizar</md-button>
           </div>
@@ -51,3 +54,4 @@
     </div>
   </div>
 </div>
+<md-button type="md-button" ng-disabled="creando" ng-click="crear_disciplina()" class="md-primary">Crear disciplina</md-button>

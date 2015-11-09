@@ -17,12 +17,16 @@ div(ng-repeat="nivelking in niveles_king")
 
 
 
-	div(ng-show ="nivelking.editando" style="margin-top: 20px")
+	div(ng-show="nivelking.editando" style="margin-top: 20px")
 		.panel.panel-default.panel-hovered.panel-stacked.mb20
-			.panel-heading Editar nivel en idiomas:
-
-				md-select(multiple="true" placeholder="Idioma" ng-model="idiomasDiscEdit")
-					md-option(ng-repeat="idioma in idiomas" value="{{idioma.id}}") {{idioma.original}}
+			.panel-heading(ng-show="!eventoactual.es_idioma_unico" layout style="height: 40;")
+				span
+					| Editar nivel en idiomas:
+					
+				
+				md-input-container(layout="row" layout-aling="start center" style="padding-bottom: 0px; margin-top: -10px;")
+					md-select(multiple="true" placeholder="Idioma" ng-model="nivelking.idiomasEdit" ng-init="nivelking.idiomasEdit =[eventoactual.idioma_principal_id]")
+						md-option(ng-repeat="idioma in eventoactual.idiomas" value="{{idioma.id}}") {{idioma.original}}
 
 			.panel-body
 				form.form-horizontal(name="frm" role="form")
@@ -41,11 +45,16 @@ div(ng-repeat="nivelking in niveles_king")
 								.form-group
 									label Descripcion:
 									input.form-control(type="text" ng-model="nivel.descripcion")
-							.col-lg-2.col-sm-2.col-xs-12
+							.col-lg-2.col-sm-2.col-xs-12(ng-if="!evento_actual.es_idioma_unico")
 								.form-group
 									md-checkbox(ng-model="nivel.traducido" aria-label="¿Traducido?")
 										| ¿Traducido?
 
 					.clearfix.right
+						md-button.md-default(ng-click="cerrar_edicion(nivelking)") Cerrar
 						md-button.md-primary(type="submit" ng-disabled="guardando(nivelking)") Aplicar
 						md-button.md-default(ng-click="finalizar_edicion(nivelking)") Finalizar
+
+
+
+md-button.md-primary(type="md-button" ng-disabled="creando" ng-click="crear_nivel()") Crear disciplina

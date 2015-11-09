@@ -1,14 +1,28 @@
+div
+	md-content.md-padding(ng-if ="idiomaPreg.md-select")
 
-md-select(placeholder="Idioma" ng-model="idiomaPreg")
-	md-option(ng-repeat="idioma in idiomas" value="{{idioma.id}}") {{idioma.original}}
 
-br
-br
+		md-input-container(ng-if ="!evento_actual.es_idioma_unico" layout="row" layout-alig="star center")
+			label Idioma:
+			md-select(ng-model ="idiomaPreg.selected")
+				md-select(placeholder="Idioma" ng-model="idiomaPreg")
+					md-option(ng-repeat="idioma in idiomas" value="{{idioma.id}}") {{idioma.original}}
 
-tabset
-	tab(heading="{{'CATEGORIAS_TITLE' | translate}}")
-		categorias-dir
-	tab(heading="{{'NIVELES_TITLE' | translate}}")
-		niveles-dir
-	tab(heading="{{'DISCIPLINA_TITLE' | translate}}")
-		disciplinas-dir
+
+		md-tabs.md-dynamic-heigth.md-border-bottom
+			md-tab(label="{{'CATEGORIAS_TITLE' | translate}}")
+				div(style ="padding: 25px;")
+
+					categorias-dir(idiomapreg="idiomaPreg" eventoactual="evento_actual")
+
+			md-tab(label="{{'NIVELES_TITLE' | translate}}")
+				div(style ="padding: 25px;")
+
+					niveles-dir(idiomapreg="idiomaPreg" eventoactual="evento_actual")
+
+
+			md-tab(label="{{'DISCIPLINA_TITLE' | translate}}")
+				div(style ="padding: 25px;")
+
+					disciplinas-dir(idiomapreg="idiomaPreg" eventoactual="evento_actual")
+

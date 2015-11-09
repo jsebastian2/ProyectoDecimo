@@ -49,5 +49,5 @@
         <md-whiteframe ng-class="{'elegida':opcion.elegida}" ng-if="!opcion.nueva" flex="40" ng-click="elegirOpcion(pregunta, opcion)" ng-repeat="opcion in pregunta.opciones" class="pointer md-whiteframe-z2 btn"> <span style="font-weight: bold;">{{ indexChar($index) }}. </span><span>{{ opcion.definicion }}</span></md-whiteframe>
       </div></span>
   </div>
-  <edit-pregunta preguntaking="preguntaking" ng-show="preguntaking.editando"></edit-pregunta>
+  <edit-pregunta preguntaking="preguntaking" ng-show="preguntaking.editando" eventoactual="eventoactual" eventoactualselec="{{eventoactualselec}}"></edit-pregunta>
 </div>
